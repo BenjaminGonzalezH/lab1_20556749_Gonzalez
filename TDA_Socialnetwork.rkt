@@ -88,3 +88,7 @@
   ;En el caso falso se imprimer mensage de error.
   (display "Error: no string input")
   ))
+
+; Date
+; Funcion que toma 3 enteros y realiza una lista de ellos.
+(define (Date a b c) (list a b c))

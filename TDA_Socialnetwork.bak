@@ -87,4 +87,4 @@
 
   ;En el caso falso se imprimer mensage de error.
   (display "Error: no string input")
-  ))
+  ))  

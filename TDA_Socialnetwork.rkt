@@ -92,3 +92,12 @@
 ; Date
 ; Funcion que toma 3 enteros y realiza una lista de ellos.
 (define (Date a b c) (list a b c))
+
+; Bloque de Exportación
+; En este bloque se especifican las funciones las cuales se van a
+; exportar a otros archivos.
+(provide Encryptation)
+(provide EncryptFuntion)
+(provide Decryptation)
+(provide DecryptFunction)
+(provide Date)

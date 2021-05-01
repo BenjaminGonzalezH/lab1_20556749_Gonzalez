@@ -11,34 +11,25 @@
 ; que el usuario maneja y esta se maneja como una lista heterogenea con
 ; los siguientes elementos.
 
-(define socialnetwork '("facebook" (10 07 2000) '(User) '(Post)))
+(define socialnetwork '("facebook" (10 07 2000) procedureEncriptado procedureDesencriptado '(User) '(Post)))
 
-; Esta estructura esta conformada por el nombre de la red social (string), su fecha de creación de 
-; la red social (lista de enteros), las listas de ususarios y la listas de posts.
+; Esta lista esta conformada por el nombre de la red social como un string,
+; la fecha de su creación armada por la función Date que termina entregando una
+; lista de enteros, los procesos de encriptado y desencriptado de información
+; (funciones o procesos) y dos listas de 2 subestructuras del TDA que tendrán
+; su propia estructura interna.
 
-; La subestructura user posee el siguiente orden.
+;---------------------------------------------------------------------------------------------------------------
 
-(define user '("name" "password" '(followers) '(following) '(IDpublications)))
+; FUNCIONES PROPIAS.
 
-; Esta es conformada por el nombre de usuario y la contraseña como strings,
-; un entero que da el numero de seguidores que uno tiene, las listas de
-; seguidores y siguiendo que actuaran como contactos y la lista de IDs de sus
-; publicaciones.
+; Este tipo de dato posee funciones propias para su manipulación y manejo
+; de elementos que esta posee, como para llamar a sus elementos,
+; a sus funciones incluidas o busqueda de elementos en concreto.
 
-; La subestructura post posee el siguiente orden.
 
-(define post '("user" ID "content" likes '(mencion) '(share) '(comments)))
-
-; Esta es conformada por el nombre del autor(string), la ID de la publicacion
-; el contenido (strings),un entero de numero de likes, y las listas de usuarios
-; a quienes se compartio, los comentarios y usuarios a los que se dirigio la
-; publicación.
-
-; Cabe recalcar que socialnetwork para protección de información cuenta con
-; funciones de encriptado y desencriptado, las cuales solo manejan tipo de
-; dato string y devuelven un string modificado.
-
-; FUNCIONES.
+; ENCRIPTACIÓN.
+; Las funciones del proceso de encriptación son:
 
 ; Encryptation.
 ; Función Asistente de EncryptFuntion que realiza
@@ -46,10 +37,11 @@
 ; a la que asiste y realiza el proceso de encriptado por
 ; ella.
 
-(define (Encryptation H) ;Se establece entrada.
-  ;Se crea un nuevo string usando el de entrada
+;Se establece entrada.
+(define (Encryptation H)
+  ;Se crea un nuevo string usando el de la entrada
   ;agregado a 5 veces su caracter inicial
-  ;separados por un caracter de control.
+  ;separados por un caracter de control "җ".
   (string-append H (string-append "җ" (make-string 5 (string-ref H 0)))))
 
 ; Función EncryptFuntion.
@@ -57,43 +49,67 @@
 ; encriptado (realizado por una función asistente), para posteriormente
 ; devolver ese string encriptado.
 
-(define (EncryptFuntion S) ;Se establece entrada.
-  (if (string? S) ;Se comprueba que sea un string.
-  ;En el caso verdadero se modifica el string.
-  ;con la función Encryptation.
-  (Encryptation S) 
+;Se establece entrada.
+(define (EncryptFuntion S)
+  ;Se comprueba que sea un string el elemento de la entrada.
+  (if (string? S) 
+      ;En el caso verdadero se modifica el string.
+      ;con la función Encryptation.
+      (Encryptation S) 
 
-  ;En el caso falso se imprime mensage de error.
-  (display "Error: no string input")
-  ))
+      ;En el caso falso se imprime mensage de error.
+      (display "Error: no string input")
+      ))
+
+
+; DESENCRIPTACIÓN.
+; Las funciones del proceso de desencriptación son:
+
 
 ; Decryptation.
 ; Función asistente de DecryptFunction que realiza
 ; el proceso de decriptación.
 
-(define (Decryptation H) ;Se establece entrada.
+;Se establece entrada.
+(define (Decryptation H)
   ;Se una la función substring para dividir el string
-  ;inicial del modificado.
+  ;inicial del modificado, esto bajo la idea de que el
+  ;encriptado solo agrego 6 caracteres más..
   (substring H 0 (- (string-length H) 6)))
 
 ; DecryptFunction
 ; Función que recibe un string y lo modifica para
 ; deshacer los cambios de EncryptFuntion.
 
-(define (DecryptFunction S) ;Se establece entrada.
-  (if (string? S) ;Se comprueba que sea un string.
-  ;Caso verdadero: se realiza el proceso de desencriptado.
-  (Decryptation S)
+;Se establece entrada.
+(define (DecryptFunction S)
+  ;Se comprueba que sea un string.
+  (if (string? S) 
+      ;Caso verdadero: se realiza el proceso de desencriptado.
+      (Decryptation S)
 
-  ;En el caso falso se imprimer mensage de error.
-  (display "Error: no string input")
-  ))
+      ;En el caso falso se imprimer mensage de error.
+      (display "Error: no string input")
+      ))
 
+; FECHA
 ; Date
-; Funcion que toma 3 enteros y realiza una lista de ellos.
-(define (Date a b c) (list a b c))
+; Funcion que recibe de entrada numeros 3 enteros
+; y devuelve una lista de ellos.
 
-; Bloque de Exportación
+; Se establece entrada.
+(define (Date a b c)
+  ;Se establece condicionales para comprobar
+  ;entradas de numeros exactos
+  (if (and (exact? a) (exact? b) (exact? c))
+      ;Caso verdadero se crea lista.
+      (list a b c)
+
+      ;Caso falso se da mensaje de error.
+      (display "Input Error: no exact number")
+      ))
+
+; BLOQUE DE EXPORTACIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
 (provide Encryptation)

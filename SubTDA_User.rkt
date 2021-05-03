@@ -71,7 +71,7 @@
   (if (exact? ID)
       ;Caso verdadero.
       ;Se agrega ID a la lista de IDs
-      (append (list-ref User 4) '(ID))
+      (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (list-ref User 3) (append (list-ref User 4) '(ID)))
 
       ;Caso falso
       (display "Error: Input fail")
@@ -87,7 +87,7 @@
   (if (string? Follower)
       ;Caso verdadero
       ;Se agrega seguidor a lista de seguidores.
-      (append (list-ref User 2) '(Followers))
+      (Create_User  (list-ref User 0) (list-ref User 1) (append (list-ref User 2) '(Followers)) (list-ref User 3) (list-ref User 4))
 
       ;Caso falso.
       ;Se imprime mensaje de error.
@@ -103,7 +103,7 @@
   (if (string? Following)
       ;Caso verdadero
       ;Se agrega seguidor a lista de seguidores.
-      (append (list-ref User 3) '(Following))
+       (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (append (list-ref User 3) '(Following)) (list-ref User 4))
 
       ;Caso falso.
       ;Se imprime mensaje de error.

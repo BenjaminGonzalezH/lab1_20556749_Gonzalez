@@ -19,13 +19,20 @@
 
 ; Create_User.
 ; Función que recibe los elementos para crear la estructura del usuario
-; con sus elementos.
+; con sus elementos. No requiere de comprobación en otros elementos por
+; implementación bajo currificación.
 
 ; Se define entrada.
 (define (Create_User Nickname password followers followings IDpublications)
-  ;De los elementos de entrada se crea una lista.
-  (list Nickname password followers followings IDpublications)
-  )
+  ;Se estabñece condiciones de datos.
+  (if (and (string? Nickname) (string? password))
+     ;Caso verdadero.
+      ;De los elementos de entrada se crea una lista.
+      (list Nickname password followers followings IDpublications)
+     ;Caso falso
+      ;Se imprime mensaje de error.
+      (display "Error: Input fail")
+  ))
 
 ; AreSimilar
 ; Función que comprueba si 2 usuarios tienen el mismo nombre
@@ -55,3 +62,50 @@
   (length (list-ref User1 2))
   )
 
+; NewID
+; Función que agrega una nueva ID de publicación del usuario.
+
+;Se definen entradas.
+(define (NewID User ID)
+  ;Se comprueba si el dato es un numero.
+  (if (exact? ID)
+      ;Caso verdadero.
+      ;Se agrega ID a la lista de IDs
+      (append (list-ref User 4) '(ID))
+
+      ;Caso falso
+      (display "Error: Input fail")
+      ))
+
+; NewFollower.
+; Función que recibe un nuevo usuario como seguidor.
+
+;Se definen entradas.
+(define (NewFollower User Follower)
+  ;Se establece condición para ver si
+  ;follower es un string.
+  (if (string? Follower)
+      ;Caso verdadero
+      ;Se agrega seguidor a lista de seguidores.
+      (append (list-ref User 2) '(Followers))
+
+      ;Caso falso.
+      ;Se imprime mensaje de error.
+      (display "Error: Input fail")
+      ))
+
+; NewFollowing.
+; Función que agrega a otra persona que el usuario
+; sigue
+(define (NewFollowing User Following)
+  ;Se establece condición para ver si
+  ;following es un string.
+  (if (string? Following)
+      ;Caso verdadero
+      ;Se agrega seguidor a lista de seguidores.
+      (append (list-ref User 3) '(Following))
+
+      ;Caso falso.
+      ;Se imprime mensaje de error.
+      (display "Error: Input fail")
+      ))

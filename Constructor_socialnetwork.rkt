@@ -13,4 +13,14 @@
 ; red social, la fecha de creación y el uso de las funciones de
 ; encriptado. La función debe devolver el TDA red social.
 
-(define (socialnetwork name date EncryptFuntion DecryptFunction) (list name date EncryptFuntion DecryptFunction))
+;Se define entrada.
+(define (socialnetwork name date EncryptFuntion DecryptFunction)
+  ;Se establecen condicionales para generar el socialnetwork.
+  (if (and (string? name) (list? date))
+      ;Caso verdadero.
+      ;Se crea la función.
+      (list name date EncryptFuntion DecryptFunction)
+
+      ;Caso falso.
+      (display "Input Error")
+      )) 

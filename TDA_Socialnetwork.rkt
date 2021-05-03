@@ -1,4 +1,4 @@
-; DESCRIPCION GENERAL. 
+; DESCRIPCION GENERAL.
 ; Este archivo guarda el TDA socialnetwork y sus funciones relacionadas,
 ; el proposito de esto es documentar la estructura interna del tipo de dato
 ; abstracto pensado para la implementación del lab y las funciones de
@@ -50,7 +50,7 @@
 ; devolver ese string encriptado.
 
 ;Se establece entrada.
-(define (EncryptFuntion S)
+(define (EncryptFunction S)
   ;Se comprueba que sea un string el elemento de la entrada.
   (if (string? S) 
       ;En el caso verdadero se modifica el string.
@@ -109,11 +109,12 @@
       (display "Input Error: no exact number")
       ))
 
+
 ; BLOQUE DE EXPORTACIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
 (provide Encryptation)
-(provide EncryptFuntion)
+(provide EncryptFunction)
 (provide Decryptation)
 (provide DecryptFunction)
 (provide Date)

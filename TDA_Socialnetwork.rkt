@@ -27,6 +27,20 @@
 ; de elementos que esta posee, como para llamar a sus elementos,
 ; a sus funciones incluidas o busqueda de elementos en concreto.
 
+; FUNCIONES DE ERROR.
+; Este tipo de funciones sin importar el dato de entrada
+; entregaran los datos String " " o lista '(()). Esto con el
+; objetivo de simplificar las funciones, ya que IF requiere que sus
+; resultados de condicional generen procesos en los propios parametros de
+; entrada.
+
+;StringError.
+(define (StringError E)
+  (string #\u0020))
+
+;ListError.
+(define (ListError E)
+  (list '()))
 
 ; ENCRIPTACIÓN.
 ; Las funciones del proceso de encriptación son:
@@ -57,8 +71,8 @@
       ;con la función Encryptation.
       (Encryptation S) 
 
-      ;En el caso falso se imprime mensage de error.
-      (display "Error: no string input")
+      ;En el caso falso se entrega un string vacio.
+      (StringError S)
       ))
 
 
@@ -88,33 +102,47 @@
       ;Caso verdadero: se realiza el proceso de desencriptado.
       (Decryptation S)
 
-      ;En el caso falso se imprimer mensage de error.
-      (display "Error: no string input")
+      ;En el caso falso se entrega un string vacio.
+      (StringError S)
       ))
 
 ; FECHA
+
+; ValidDate.
+; Función que comprueba si los elementos de date
+; son validos para una fecha.
+(define (ValidDate a b c)
+  ;Se define condicional para ver si date
+  ;tiene valores pertenecientes a una fecha.
+  (and (< a 32) (< b 13) (> c 1930))
+  )
+
+
 ; Date
 ; Funcion que recibe de entrada numeros 3 enteros
 ; y devuelve una lista de ellos.
 
 ; Se establece entrada.
-(define (Date a b c)
+(define (date a b c)
   ;Se establece condicionales para comprobar
   ;entradas de numeros exactos
-  (if (and (exact? a) (exact? b) (exact? c))
+  (if (and (integer? a) (integer? b) (integer? c) (ValidDate a b c))
       ;Caso verdadero se crea lista.
       (list a b c)
 
-      ;Caso falso se da mensaje de error.
-      (display "Input Error: no exact number")
+      ;Caso falso se da una lista vacia.
+      (ListError a)
       ))
 
 
 ; BLOQUE DE EXPORTACIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
+(provide StringError)
+(provide ListError)
 (provide Encryptation)
 (provide EncryptFunction)
 (provide Decryptation)
 (provide DecryptFunction)
-(provide Date)
+(provide date)
+(provide ValidDate)

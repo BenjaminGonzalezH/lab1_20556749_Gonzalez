@@ -5,7 +5,7 @@
 ; Se da a entender uso del lenguaje scheme al interprete.
 #lang scheme
 
-; Se pide información del archivo "TDA_socialnetwork.rkt"
+; Se pide información de funciones del archivo "TDA_socialnetwork.rkt"
 (require "TDA_socialnetwork.rkt")
 
 ; Socialnetwork
@@ -14,13 +14,13 @@
 ; encriptado. La función debe devolver el TDA red social.
 
 ;Se define entrada.
-(define (socialnetwork name date EncryptFuntion DecryptFunction)
+(define (socialnetwork name fecha EncryptFun DecryptFun)
   ;Se establecen condicionales para generar el socialnetwork.
-  (if (and (string? name) (list? date))
+  (if (and (string? name) (IsDate fecha) (procedure? EncryptFun) (procedure? DecryptFun))
       ;Caso verdadero.
       ;Se crea la función.
-      (list name date EncryptFuntion DecryptFunction)
+      (list name fecha EncryptFun DecryptFun)
 
       ;Caso falso.
-      (display "Input Error")
+      (list '())
       )) 

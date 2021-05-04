@@ -1,14 +1,14 @@
 ; DESCRIPCION GENERAL.
-; Este archivo guarda el TDA socialnetwork y sus funciones relacionadas,
-; el proposito de esto es documentar la estructura interna del tipo de dato
-; abstracto pensado para la implementación del lab y las funciones de
+; Este archivo guarda el TDA socialnetwork y sus funciones relacionadas.
+; El proposito de esto es documentar la estructura interna del tipo de dato
+; abstracto pensado para la implementación del laboratorio y las funciones de
 ; encriptado de información.
 
 ; Se le da a entender al interprete el uso del lenguaje scheme.
 #lang scheme
 
 ; El TDA socialnetwork es una estructura que representa a la red social
-; que el usuario maneja y esta se maneja como una lista heterogenea con
+; que el usuario maneja y esta se representa como una lista heterogenea con
 ; los siguientes elementos.
 
 (define socialnetwork '("facebook" (10 07 2000) procedureEncriptado procedureDesencriptado '(User) '(Post)))
@@ -23,24 +23,9 @@
 
 ; FUNCIONES PROPIAS.
 
-; Este tipo de dato posee funciones propias para su manipulación y manejo
-; de elementos que esta posee, como para llamar a sus elementos,
-; a sus funciones incluidas o busqueda de elementos en concreto.
-
-; FUNCIONES DE ERROR.
-; Este tipo de funciones sin importar el dato de entrada
-; entregaran los datos String " " o lista '(()). Esto con el
-; objetivo de simplificar las funciones, ya que IF requiere que sus
-; resultados de condicional generen procesos en los propios parametros de
-; entrada.
-
-;StringError.
-(define (StringError E)
-  (string #\u0020))
-
-;ListError.
-(define (ListError E)
-  (list '()))
+; Este tipo de dato posee funciones propias para la manipulación y manejo
+; de elementos que esta posee, sea llamar a sus elementos o
+; funciones incluidas o busqueda de elementos en concreto.
 
 ; ENCRIPTACIÓN.
 ; Las funciones del proceso de encriptación son:
@@ -71,14 +56,13 @@
       ;con la función Encryptation.
       (Encryptation S) 
 
-      ;En el caso falso se entrega un string vacio.
-      (StringError S)
+      ;En el caso falso se entrega un string de espacio vacio.
+      (string #\u0020)
       ))
 
 
 ; DESENCRIPTACIÓN.
 ; Las funciones del proceso de desencriptación son:
-
 
 ; Decryptation.
 ; Función asistente de DecryptFunction que realiza
@@ -86,37 +70,38 @@
 
 ;Se establece entrada.
 (define (Decryptation H)
-  ;Se una la función substring para dividir el string
+  ;Se usa la función substring para dividir el string
   ;inicial del modificado, esto bajo la idea de que el
-  ;encriptado solo agrego 6 caracteres más..
+  ;encriptado solo agrego 6 caracteres más.
   (substring H 0 (- (string-length H) 6)))
 
 ; DecryptFunction
 ; Función que recibe un string y lo modifica para
-; deshacer los cambios de EncryptFuntion.
+; deshacer los cambios de EncryptFuntion, esto bajo
+; su respectiva función asistente.
 
 ;Se establece entrada.
 (define (DecryptFunction S)
-  ;Se comprueba que sea un string.
+  ;Se comprueba que sea un string el elemento de entrada.
   (if (string? S) 
       ;Caso verdadero: se realiza el proceso de desencriptado.
       (Decryptation S)
 
       ;En el caso falso se entrega un string vacio.
-      (StringError S)
+      (string #\u0020)
       ))
 
 ; FECHA
-
 ; ValidDate.
 ; Función que comprueba si los elementos de date
 ; son validos para una fecha.
+
+;Se define entrada
 (define (ValidDate a b c)
   ;Se define condicional para ver si date
   ;tiene valores pertenecientes a una fecha.
   (and (< a 32) (< b 13) (> c 1930))
   )
-
 
 ; Date
 ; Funcion que recibe de entrada numeros 3 enteros
@@ -131,18 +116,31 @@
       (list a b c)
 
       ;Caso falso se da una lista vacia.
-      (ListError a)
+      (list '())
       ))
+
+; IsDate.
+; Función que comprueba si una lista es
+; una lista date.
+
+;Se define entrada.
+(define (IsDate lista)
+  ;Se establece condicional para ver si
+  ;la lista cumple condiciones de una
+  ;lista date.
+  (and (= 3 (length lista));Tamaño de lista
+       ((integer? (list-ref 0)) (integer?(list-ref 1)) (integer?(list-ref 2))) ;Son numeros exactos
+       (ValidDate (list-ref 0) (list-ref 1) (list-ref 2)) ;Fecha valida
+       ))
 
 
 ; BLOQUE DE EXPORTACIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
-(provide StringError)
-(provide ListError)
 (provide Encryptation)
 (provide EncryptFunction)
 (provide Decryptation)
 (provide DecryptFunction)
 (provide date)
 (provide ValidDate)
+(provide IsDate)

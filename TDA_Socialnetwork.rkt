@@ -128,9 +128,9 @@
   ;Se establece condicional para ver si
   ;la lista cumple condiciones de una
   ;lista date.
-  (and (= 3 (length lista));Tamaño de lista
-       ((integer? (list-ref 0)) (integer?(list-ref 1)) (integer?(list-ref 2))) ;Son numeros exactos
-       (ValidDate (list-ref 0) (list-ref 1) (list-ref 2)) ;Fecha valida
+  (and (= 3 (length lista)) ;Tamaño de lista
+       (map integer? lista) ;lista homogenea de nuemeros enteros.
+       (ValidDate (list-ref lista 0) (list-ref lista 1) (list-ref lista 2)) ;Fecha valida
        ))
 
 

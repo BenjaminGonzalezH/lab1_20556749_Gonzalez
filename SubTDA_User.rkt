@@ -1,4 +1,4 @@
-; DESCRIPCIÓN GENERAL.
+; DESCRIPCIÓN GENERAL. 
 ; Este archivo describe la subestructura del socialnetwork
 ; '(User), desde sus elementos hasta sus funciones propias. 
 
@@ -30,8 +30,8 @@
       ;De los elementos de entrada se crea una lista.
       (list Nickname password followers followings IDpublications)
      ;Caso falso
-      ;Se imprime mensaje de error.
-      (display "Error: Input fail")
+      ;Se entrega lista de lista vacia.
+      (list '())
   ))
 
 ; AreSimilar
@@ -40,16 +40,11 @@
 
 ; Se define entradas
 (define (AreSimilar User1 User2)
-  ;Se establece condicion de nombres
+  ;Se comprueba si los nombres son
   ;iguales usando la función de
   ;comparador de Strings.
-  (if (string=? (list-ref User1 0)(list-ref User2 0))
-      ;En caso de verdad se entrega un true.
-      (#t)
-
-      ;En caso de falsedad entrega un false.
-      (#f)
-  ))
+  (string=? (list-ref User1 0)(list-ref User2 0))
+  )
 
 ; NumFollowers
 ; Función que entrega el numero de seguidores del
@@ -68,13 +63,14 @@
 ;Se definen entradas.
 (define (NewID User ID)
   ;Se comprueba si el dato es un numero.
-  (if (exact? ID)
+  (if (integer? ID)
       ;Caso verdadero.
-      ;Se agrega ID a la lista de IDs
-      (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (list-ref User 3) (append (list-ref User 4) '(ID)))
+      ;Se crea nuevo user con la ID agregada.
+      (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (list-ref User 3) (append (list-ref User 4) (list ID)))
 
-      ;Caso falso
-      (display "Error: Input fail")
+      ;Caso falso}
+      ;Se entrega una lista de lista vacia.
+      (list '())
       ))
 
 ; NewFollower.
@@ -86,12 +82,12 @@
   ;follower es un string.
   (if (string? Follower)
       ;Caso verdadero
-      ;Se agrega seguidor a lista de seguidores.
-      (Create_User  (list-ref User 0) (list-ref User 1) (append (list-ref User 2) '(Followers)) (list-ref User 3) (list-ref User 4))
+      ;Se crea nueva estructura con el seguidor nuevo
+      (Create_User  (list-ref User 0) (list-ref User 1) (append (list-ref User 2) (list Follower)) (list-ref User 3) (list-ref User 4))
 
-      ;Caso falso.
-      ;Se imprime mensaje de error.
-      (display "Error: Input fail")
+      ;Caso falso}
+      ;Se entrega una lista de lista vacia.
+      (list '())
       ))
 
 ; NewFollowing.
@@ -102,10 +98,10 @@
   ;following es un string.
   (if (string? Following)
       ;Caso verdadero
-      ;Se agrega seguidor a lista de seguidores.
-       (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (append (list-ref User 3) '(Following)) (list-ref User 4))
+      ;Se crea nueva estructura con el seguidor agregado.
+       (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (append (list-ref User 3) (list Following)) (list-ref User 4))
 
-      ;Caso falso.
-      ;Se imprime mensaje de error.
-      (display "Error: Input fail")
+      ;Caso falso}
+      ;Se entrega una lista de lista vacia.
+      (list '())
       ))

@@ -133,6 +133,23 @@
        (ValidDate (list-ref lista 0) (list-ref lista 1) (list-ref lista 2)) ;Fecha valida
        ))
 
+; Pertenencia de estructura:
+
+; IsSocialnetwork.
+; Función que comprueba si un elemento entregado
+; es un socialnetwork.
+
+;Se define socialnetwork
+(define (IsSocialnetwork elemento)
+  ;Se establece condicionales para saber si
+  ;cumple con la estructura socialnetwork.
+  (if (list? elemento) ;Es una lista.
+      ;Caso verdadero.
+      (and (string? (list-ref elemento 0)) (IsDate (list-ref elemento 1)) (procedure? (list-ref elemento 2)) (procedure? (list-ref elemento 3)))
+      ;Caso falso.
+      (list? elemento)
+      ))
+
 
 ; BLOQUE DE EXPORTACIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
@@ -144,3 +161,4 @@
 (provide date)
 (provide ValidDate)
 (provide IsDate)
+(provide IsSocialnetwork)

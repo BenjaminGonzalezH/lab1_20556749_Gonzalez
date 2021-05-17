@@ -1,4 +1,4 @@
-; DESCRIPCION GENERAL. 
+; DESCRIPCION GENERAL.
 ; En este archivo se guarda la función constructor
 ; del TDA socialnetwork.
 
@@ -23,4 +23,9 @@
 
       ;Caso falso.
       (list '())
-      )) 
+      ))
+
+; BLOQUE DE EXPORTACIONES
+; En este bloque se especifican las funciones las cuales se van a
+; exportar a otros archivos.
+(provide socialnetwork)

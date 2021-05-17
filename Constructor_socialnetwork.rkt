@@ -19,7 +19,7 @@
   (if (and (string? name) (IsDate fecha) (procedure? EncryptFun) (procedure? DecryptFun))
       ;Caso verdadero.
       ;Se crea la función.
-      (list name fecha EncryptFun DecryptFun)
+      (list name fecha EncryptFun DecryptFun '() '())
 
       ;Caso falso.
       (list '())

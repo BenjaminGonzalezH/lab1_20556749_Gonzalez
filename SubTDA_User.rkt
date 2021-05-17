@@ -105,3 +105,13 @@
       ;Se entrega una lista de lista vacia.
       (list '())
       ))
+
+; BLOQUE DE EXPORTANCIÓN.
+; En este bloque se especifican las funciones las cuales se van a
+; exportar a otros archivos.
+(provide Create_User)
+(provide AreSimilar)
+(provide numFollowers)
+(provide NewID)
+(provide NewFollower)
+(provide NewFollowing)

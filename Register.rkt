@@ -1,4 +1,4 @@
-; DESCRIPCIÓN GENERAL
+; DESCRIPCIÓN GENERAL.
 ; En este archivo se guarda la función  register
 ; la cual construye los usuarios para el TDA socialnetwork.
 
@@ -70,3 +70,8 @@
       (socialnetwork "" '(1 3 1956) EncryptFunction EncryptFunction)
       )
   )
+
+; BLOQUE DE EXPORTACION.
+; En esta sección se exportan las funciones para otros archivos.
+(provide ExistBefore)
+(provide register)

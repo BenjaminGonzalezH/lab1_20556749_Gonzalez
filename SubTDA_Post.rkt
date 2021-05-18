@@ -55,3 +55,8 @@
   ;compartido como largo de lista share.
   (length (list-ref post 5))
   )
+
+; BLOQUE DE EXPORTACIÓN.
+; En esta sección se especifican las funciones las cuales se
+; exportan a otros archivos.
+(provide CreatePost)

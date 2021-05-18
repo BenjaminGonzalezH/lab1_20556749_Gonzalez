@@ -7,7 +7,7 @@
 
 ; La subestructura user posee los siguientes elementos.
 
-(define user '("name" "password" '(followers) '(following) '(IDpublications)))
+(define user '("name" "password" '(date) '(followers) '(following) '(IDpublications)))
 
 ; Esta es conformada por el nombre de usuario (String) y la contraseña
 ;(string), la lista de seguidores, lista de usuarios seguidos y las ID
@@ -23,12 +23,12 @@
 ; implementación bajo currificación.
 
 ; Se define entrada.
-(define (Create_User Nickname password followers followings IDpublications)
+(define (Create_User Nickname password date followers followings IDpublications)
   ;Se estabñece condiciones de datos.
   (if (and (string? Nickname) (string? password))
      ;Caso verdadero.
       ;De los elementos de entrada se crea una lista.
-      (list Nickname password followers followings IDpublications)
+      (list Nickname password date followers followings IDpublications)
      ;Caso falso
       ;Se entrega lista de lista vacia.
       (list '())

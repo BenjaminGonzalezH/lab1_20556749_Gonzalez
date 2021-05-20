@@ -5,3 +5,19 @@
 ;Se da a entender al interprete el uso de lenguaje shceme.
 #lang scheme
 
+; Bloque de importaciones.
+(require "SubTDA_User.rkt")
+(require "TDA_Socialnetwork.rkt")
+(require "Constructor_socialnetwork.rkt")
+(require "SubTDA_Post.rkt")
+(require "Register.rkt")
+
+; follow
+; Función currificada que permite a un usuario seguir a una persona
+; esto viendose reflejado en socialnetwork
+(define follow (lambda (socialn) (lambda (user) (lambda (date user)
+                                                  ;se comprueban si los datos ingresados
+                                                  ;son correctos y si el usuario existe a seguir
+                                                  ;cumple que no sea el usuario mismo y este exista
+                                                  ;en la lista de usuarios del socialnetwork
+                                                  (if (and (IsDate date) (string? user) 

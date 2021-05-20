@@ -10,8 +10,26 @@
 (require "Register.rkt")
 (require "TDA_Socialnetwork.rkt")
 (require "Constructor_socialnetwork.rkt")
+(require "post.rkt")
 
+; ChangePost
+; Se define función que cambia el elemento
+; de una lista de post por otro modificado.
+(define (ChangePost listofpost post newlist)
+  ;Lista vacia o ultimo elemento.
+  (if (= (length listofpost) 0)
+      (append newlist)
 
+      ;se ve elemento
+      (if (= (list-ref (car listofpost) 1) (list-ref post 1))
+          ;Caso verdadero reemplazo.
+          (ChangePost (cdr listofpost) post (append newlist (list post)))
+
+          ;Caso falso continua.
+          (ChangePost (cdr listofpost) post (append newlist (list (car listofpost))))
+          )
+      )
+  )
 
 
 ; Share.
@@ -28,7 +46,7 @@
                                                      (list (list-ref socialn 0) (list-ref socialn 1)
                                                            (list-ref socialn 2) (list-ref socialn 3)
                                                            (list-ref socialn 4)
-                                                           (list-ref socialn 5))
+                                                           (ChangePost (list-ref socialn 5) (NewShare (list-ref (list-ref socialn 5) ID) Userlist) '()))
 
                                                      ;Caso falso.
                                                      ;Se entrega socialnetwork sin cambios.

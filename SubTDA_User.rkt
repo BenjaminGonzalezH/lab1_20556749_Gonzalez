@@ -1,4 +1,4 @@
-; DESCRIPCIÓN GENERAL. 
+; DESCRIPCIÓN GENERAL.
 ; Este archivo describe la subestructura del socialnetwork
 ; '(User), desde sus elementos hasta sus funciones propias. 
 
@@ -66,7 +66,7 @@
   (if (integer? ID)
       ;Caso verdadero.
       ;Se crea nuevo user con la ID agregada.
-      (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (list-ref User 3) (append (list-ref User 4) (list ID)))
+      (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (list-ref User 3) (list-ref User 4) (append (list-ref User 5) (list ID)))
 
       ;Caso falso}
       ;Se entrega una lista de lista vacia.
@@ -83,7 +83,7 @@
   (if (string? Follower)
       ;Caso verdadero
       ;Se crea nueva estructura con el seguidor nuevo
-      (Create_User  (list-ref User 0) (list-ref User 1) (append (list-ref User 2) (list Follower)) (list-ref User 3) (list-ref User 4))
+      (Create_User  (list-ref User 0) (list-ref User 1) (list-ref User 2) (append (list-ref User 3) (list Follower)) (list-ref User 4) (list-ref User 5))
 
       ;Caso falso}
       ;Se entrega una lista de lista vacia.

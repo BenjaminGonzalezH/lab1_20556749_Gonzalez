@@ -50,7 +50,7 @@
 (define (ModifiUser listofUsers User newlist)
   ;lista vacia o ultimo elemento
   (if (or (= (length listofUsers) 0) (equal? (car listofUsers) '()))
-      (newlist)
+      (append newlist)
 
       ;se ve elemento
       (if (string=? (car (car listofUsers)) (car User))
@@ -78,12 +78,12 @@
                                      (list (list-ref socialn 0) (list-ref socialn 1)
                                            (list-ref socialn 2) (list-ref socialn 3)
                                            (ModifiUser (list-ref socialn 4) (NewID user (length (list-ref socialn 5))) '())
-                                           (list (append (list-ref socialn 5)
+                                           (list (list-ref socialn 5)
                                                    (CreatePost (car user) (length (list-ref socialn 5)) ((list-ref socialn 2) content) 0
-                                                               (map (list-ref socialn 2) UserList) '() '()))))
+                                                               (map (list-ref socialn 2) UserList) '() '())))
                                      ;Caso falso.
                                      ;Se entrega socialnetwork sin modificaciones.
-                                     (socialn)
+                                     (append socialn)
                                      )
                                                 )
                                  )
@@ -91,4 +91,4 @@
   )
 
 ; BLOQUE DE EXPORTACIONES.
-(provide Arefriends)
+(provide AreFriends)

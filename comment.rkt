@@ -11,6 +11,7 @@
 (require "TDA_Socialnetwork.rkt")
 (require "Constructor_socialnetwork.rkt")
 (require "post.rkt")
+(require "share.rkt")
 
 
 ; Comment

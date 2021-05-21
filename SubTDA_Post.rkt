@@ -60,3 +60,5 @@
 ; En esta sección se especifican las funciones las cuales se
 ; exportan a otros archivos.
 (provide CreatePost)
+(provide NewShare)
+(provide Liked)

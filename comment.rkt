@@ -5,7 +5,13 @@
 ; scheme.
 #lang scheme
 
-; BLOQUE DE IMPORTACIONES
+; BLOQUE DE IMPORTACIONES.
+(require "SubTDA_Post.rkt")
+(require "Register.rkt")
+(require "TDA_Socialnetwork.rkt")
+(require "Constructor_socialnetwork.rkt")
+(require "post.rkt")
+
 
 ; Comment
 ; Función que agrega un comentario a una publicación.

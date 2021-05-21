@@ -56,3 +56,6 @@
                                   )
                 )
   )
+
+; BLOQUE DE EXPORTACIÓN.
+(provide ChangePost)

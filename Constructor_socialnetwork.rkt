@@ -8,21 +8,27 @@
 ; Se pide información de funciones del archivo "TDA_socialnetwork.rkt"
 (require "TDA_socialnetwork.rkt")
 
-; Socialnetwork
-; Función que crea a la red social con el uso del nombre de la
-; red social, la fecha de creación y el uso de las funciones de
-; encriptado. La función debe devolver el TDA red social.
+; socialnetwork
+; Función que crea la representación del TDA socialnetwork
+; en su estado inicial, es decir, sin usuarios o publicaciones
+; creadas.
+;DOMINIO: String x Date x Procedure x Procedure.
+;RECORRIDO: Socialnetwork. 
 
-;Se define entrada.
 (define (socialnetwork name fecha EncryptFun DecryptFun)
-  ;Se establecen condicionales para generar el socialnetwork.
+  ;Se comprueban si los elementos ingresados son correctos
+  ;para crear socialnetwork.
   (if (and (string? name) (IsDate fecha) (procedure? EncryptFun) (procedure? DecryptFun))
       ;Caso verdadero.
-      ;Se crea la función.
+      ;Se crea TDA socialnetwork con los elementos
+      ;de la entrada.
       (list name fecha EncryptFun DecryptFun '() '())
 
       ;Caso falso.
-      (list '())
+      ;Se crea un TDA socialnetwork de error,
+      ;la cual posee fecha del año 1929.
+      ;(fecha no valida para un socialnetwork)
+      (list "Error" '(14 5 1929) EncryptFunction DecryptFunction '() '())
       ))
 
 ; BLOQUE DE EXPORTACIONES

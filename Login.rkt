@@ -5,21 +5,24 @@
 #lang scheme
 
 ; BLOQUE DE IMPORTACIONES.
-; En este bloque se importan todas las funciones necesarias para el
-; problema.
+; En este bloque se importan todas las funciones para el correcto
+; funcionamiento de la función a continuación.
 (require "SubTDA_User.rkt")
 (require "TDA_Socialnetwork.rkt")
 (require "Constructor_socialnetwork.rkt")
 (require "Register.rkt")
+(require "follow.rkt")
 
 ; ValidUser
-; Se define función que compruaba si un usuario existe en la
-; red social. Esta función recibe como entrada la lista de usuarios
-; de red social, el nombre de usuario, contraseña. Se da de salida
-; un booleano.
+; Se define función que comprueba si un usuario existe en la
+; red social y la contraseña relacionada a el es correcta.
+;DOMINIO: List of User x String x String.
+;RECORRIDO: Bool.
+;RECURSIÓN: Natural.
+
 (define (ValidUser list user pass)
-  ;Se define caso base.
-  (if (or (= (length list) 0) (equal? (car list) null))
+  ;Se define caso base para recursión.
+  (if (= (length list) 0)
       ;Caso verdadero.
       ;Si no se encontro ningún usuario existente
       ;entonces se retorna falso.
@@ -27,15 +30,17 @@
 
       ;Caso falso.
       ;Se comprueba si el usuario y contraseña
-      ;coinciden.
+      ;coinciden con el elemento actual de lista
+      ;evaluado.
       (if (and (string=? (car (car list)) user)
                (string=? (car (cdr (car list))) pass))
           ;Caso verdadero.
-          ;Se retorna una operación que da verdadero.
+          ;Se retorna verdadero.
           (and #t)
 
           ;Caso falso.
-          ;Se llama de nuevo a la función.
+          ;Se llama de nuevo a la función con la lista
+          ;acortada.
           (ValidUser (cdr list) user pass)
           )
       )
@@ -44,23 +49,24 @@
 ; Login
 ; Se define la función login como aquella que comprueba el
 ; inicio de sesion del usuario y posteriormente entregara una función
-; currificada a la que se hizo referencia como comando, en el
-; caso de que la sesión "iniciada" no pertenesca a socialnetwork, esta solo
-; entrega la función.
+; currificada a la que se hizo referencia en la entrada.
+;DOMINIO: socialnetwork x string x string x procedure.
+;RECORRIDO: procedure.
 
-; Se define entrada de la función.
 (define (login socialn user pass comand)
-  ;Se comprueba si el usuario existe en
-  ;la red social.
+  ;Se comprueba si los elementos de entrada son
+  ;correctos y si el usuario con contraseña son
+  ;validos en la red social.
   (if (and (IsSocialnetwork socialn) (string? user)
        (string? pass) (procedure? comand)
        (ValidUser (list-ref socialn 4) user pass))
       ;Caso verdadero.
-      ;Se devuelve función currificada.
-      (pass)
+      ;Se devuelve función currificada evaluada con
+      ;el socialnetwork.
+      (comand socialn)
 
       ;Caso falso.
-      ;Se devuelve función sin modificación.
-      (comand)
+      ;Se devuelve map.
+      map
       )
   )

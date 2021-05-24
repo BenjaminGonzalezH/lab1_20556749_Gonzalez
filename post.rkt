@@ -21,36 +21,33 @@
 ;RECORRIDO: Bool.
 ;RECURSIÓN: Natural.
 
-(define (AreFriends listfriends friend)
-  ;Caso Base
-  ;No se encuantra ninguna coincidencia
-  (if (= (length listfriends) 0)
-      ;Caso verdadero
-      ;Se entrega falso.
-      (and #f)
+(define AreFriends (lambda (listfriends) (lambda (friend)
+                                           ;Caso Base
+                                           ;No se encuantra ninguna coincidencia
+                                           (if (= (length listfriends) 0)
+                                               ;Caso verdadero
+                                               ;Se entrega falso.
+                                               (and #f)
 
-      ;Caso falso
-      ;Se verifica si coinciden los nombres con el elemento
-      ;en lista de amigos.
-      (if (string=? friend (car listfriends))
-          ;Caso verdadero
-          ;se entrega true.
-          (and #t)
+                                               ;Caso falso
+                                               ;Se verifica si coinciden los nombres con el elemento
+                                               ;en lista de amigos.
+                                               (if (string=? friend (car listfriends))
+                                                   ;Caso verdadero
+                                                   ;se entrega true.
+                                                   (and #t)
 
-          ;Caso falso
-          ;se llama otra vez a la función.
-          (AreFriends (cdr listfriends) friend)
-          )
-      )
+                                                   ;Caso falso
+                                                   ;se llama otra vez a la función.
+                                                   (AreFriends (cdr listfriends) friend)
+                                                   )
+                                               )
+                                           )
+                     )
   )
 
-; MentionDefinitive.
-; Se establece función la cual genera una lista de usuarios
-; si estos son amigos del usuario en cuestion.
-(define (MentionDefinitive)
-
 ; ModifiUser
-; Se crea lista que modifica la lista de usuarios
+; Se define función crea una lista de usuarios
 ; cambiando uno de sus elementos.
 ;DOMINIO: List of Users x User x list.
 ;RECORRIDO: List of Users.
@@ -61,7 +58,7 @@
   (if (= (length listofUsers) 0)
       ;Caso verdadero.
       ;Se entrega lista nueva.
-      (append newlist)
+      newlist
 
       ;Caso falso.
       ;Se ve si el nombre de usuario ingresado, existe dentro del
@@ -97,9 +94,9 @@
                                      (list (list-ref socialn 0) (list-ref socialn 1)
                                            (list-ref socialn 2) (list-ref socialn 3)
                                            (ModifiUser (list-ref socialn 4) (NewID user (length (list-ref socialn 5))) '())
-                                           (list (list-ref socialn 5)
-                                                   (CreatePost (car user) (length (list-ref socialn 5)) ((list-ref socialn 2) content) 0
-                                                               (map (list-ref socialn 2) UserList) '() '())))
+                                           (append (list-ref socialn 5)
+                                                   (list (CreatePost (car user) (length (list-ref socialn 5)) ((list-ref socialn 2) content) 0
+                                                                (filter (AreFriends (list-ref user 4))  UserList) '() '()))))
                                      ;Caso falso.
                                      ;Se entrega socialnetwork sin modificaciones.
                                      (append socialn)

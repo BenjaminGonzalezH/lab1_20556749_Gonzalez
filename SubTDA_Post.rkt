@@ -8,22 +8,23 @@
 
 ; La subestructura post posee los siguientes elementos.
 
-(define post '("user" ID "content" likes '(mencion) '(share) '(comments)))
+(define post '("user" ID "type" "content" likes '(mencion) '(share) '(comments)))
 
 ; Esta conformada por el nombre del autor (string), la ID del post (entero)
-; el contenido (string), los likes quue recibe la publicación, las menciones
-; a quienes se compartió y los comentarios (listas de string y otra subestructura).
+; el tipo de dato de la publicación (video),el contenido (string),
+; los likes quue recibe la publicación, las menciones a quienes se compartió
+; y los comentarios (listas de string y otra subestructura).
 
 ; FUNCIONES PROPIAS.
 
 ; CreatePost.
-; Se define función que crea un post. Por corrificación en
+; Se define función que crea un post. Por currificación en
 ; implementación no se establecen condiciones.
 
 ;Se define entrada.
-(define (CreatePost User ID Content likes Mencion share comments)
+(define (CreatePost User type ID Content likes Mencion share comments)
   ;Se construye lista de elementos.
-  (list User ID Content likes Mencion share comments))
+  (list User type ID Content likes Mencion share comments))
 
 ; Liked.
 ; Función que agrega un like al post.
@@ -31,8 +32,8 @@
 ;Se definen entradas.
 (define (Liked post)
   ;Se agrega like al post.
-  (CreatePost (list-ref post 0) (list-ref post 1) (list-ref post 2) (+ (list-ref post 3) 1)
-              (list-ref post 4) (list-ref post 5) (list-ref post 6))
+  (CreatePost (list-ref post 0) (list-ref post 1) (list-ref post 2) (list-ref post 3)
+              (+ (list-ref post 4) 1) (list-ref post 5) (list-ref post 6) (list-ref post 7))
   )
 
 ; NewShare
@@ -42,7 +43,8 @@
 (define (NewShare post username)
   ;Se agrega like al post.
   (CreatePost (list-ref post 0) (list-ref post 1) (list-ref post 2) (list-ref post 3)
-              (list-ref post 4) (append (list-ref post 5) (list username)) (list-ref post 6))
+              (list-ref post 4) (list-ref post 5)
+              (append (list-ref post 6) (list username)) (list-ref post 7))
   )
 
 ; Shared.
@@ -53,7 +55,7 @@
 (define (Shared post)
   ;Se entrega el numero de veces
   ;compartido como largo de lista share.
-  (length (list-ref post 5))
+  (length (list-ref post 6))
   )
 
 ; BLOQUE DE EXPORTACIÓN.

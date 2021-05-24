@@ -15,15 +15,22 @@
 
 ; follow
 ; Función currificada que permite a un usuario seguir a una persona
-; esto viendose reflejado en socialnetwork
+; esto viendose reflejado en socialnetwork.
+;DOMINIO: Socialnetwork.
+;RECORRIDO1: User.
+;RECORRIDO2: date.
+;RECORRIDO3: string.
+;RECORRIDO FINAL: Socialnetwork.
 (define follow (lambda (socialn) (lambda (user) (lambda (date) (lambda (User)
                                                   ;se comprueban si los datos ingresados
                                                   ;son correctos y si el usuario existe a seguir
-                                                  ;cumple que no sea el usuario mismo y este exista
-                                                  ;en la lista de usuarios del socialnetwork
+                                                  ;cumple que no sea el usuario mismo, que exista
+                                                  ;en la lista de usuarios del socialnetwork y
+                                                  ;no se haya seguido con anterioridad.
                                                   (if (and (IsDate date) (string? User)
                                                            (not(ExistBefore (list-ref socialn 4) User))
-                                                           (not (string=? (car user) User)))
+                                                           (not (string=? (car user) User))
+                                                           (not ((AreFriends (list-ref user 4)) User)))
                                                       ;Caso verdadero
                                                       ;se crea otro socialnetwork con el nuevo follow.
                                                       (list (list-ref socialn 0) (list-ref socialn 1)
@@ -34,7 +41,7 @@
 
                                                       ;Caso falso.
                                                       ;Se da socialnetwork sin cambios.
-                                                      (socialn)
+                                                      socialn
                                                       )
                                                   )
                                    )

@@ -83,7 +83,7 @@
 ;RECORRIDO: date x content x list of strings.
 ;RECORRIDO FINAL: Socialnetwork.
 
-(define post (lambda (socialn) (lambda (user) (lambda (date content . UserList)
+(define post (lambda (socialn) (lambda (user) (lambda (date type content . UserList)
                                  ;Se comprueba si los datos ingresados son
                                  ;correctos.
                                  (if (and (IsDate date) (string? content))
@@ -95,7 +95,7 @@
                                            (list-ref socialn 2) (list-ref socialn 3)
                                            (ModifiUser (list-ref socialn 4) (NewID user (length (list-ref socialn 5))) '())
                                            (append (list-ref socialn 5)
-                                                   (list (CreatePost (car user) (length (list-ref socialn 5)) ((list-ref socialn 2) content) 0
+                                                   (list (CreatePost (car user) type (length (list-ref socialn 5)) ((list-ref socialn 2) content) 0
                                                                 (filter (AreFriends (list-ref user 4))  UserList) '() '()))))
                                      ;Caso falso.
                                      ;Se entrega socialnetwork sin modificaciones.

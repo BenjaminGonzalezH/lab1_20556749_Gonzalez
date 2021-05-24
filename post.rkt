@@ -80,10 +80,12 @@
 ; sera guardado en el socialnetwork y posteriormente escribe la ID de ese
 ; post a ese usuario.
 ;DOMINIO: Socialnetwork.
-;RECORRIDO: date x content x list of strings.
+;RECORRIDO1: User
+;RECORRIDO2: date
+;RECORRIDO3: content x list of strings.
 ;RECORRIDO FINAL: Socialnetwork.
 
-(define post (lambda (socialn) (lambda (user) (lambda (date type content . UserList)
+(define post (lambda (socialn) (lambda (user) (lambda (date) (lambda (type content . UserList)
                                  ;Se comprueba si los datos ingresados son
                                  ;correctos.
                                  (if (and (IsDate date) (string? content))
@@ -104,7 +106,7 @@
                                                 )
                                  )
                )
-  )
+  ))
 
 ; BLOQUE DE EXPORTACIONES.
 ; En este bloque se especifican las funciones las cuales se van a

@@ -17,10 +17,14 @@
 ; AreFriends
 ; Se crea función recursiva si ve que si un usuario
 ; esta en la lista de seguidores de otro.
+;DOMINIO: list of strings x string.
+;RECORRIDO: Bool.
+;RECURSIÓN: Natural.
+
 (define (AreFriends listfriends friend)
   ;Caso Base
   ;No se encuantra ninguna coincidencia
-  (if (or (= (car listfriends) null) (= (length listfriends) 0))
+  (if (= (length listfriends) 0)
       ;Caso verdadero
       ;Se entrega falso.
       (and #f)
@@ -43,38 +47,53 @@
 ; MentionDefinitive.
 ; Se establece función la cual genera una lista de usuarios
 ; si estos son amigos del usuario en cuestion.
+(define (MentionDefinitive)
 
 ; ModifiUser
 ; Se crea lista que modifica la lista de usuarios
 ; cambiando uno de sus elementos.
+;DOMINIO: List of Users x User x list.
+;RECORRIDO: List of Users.
+;RECURSIÓN: Natural.
+
 (define (ModifiUser listofUsers User newlist)
-  ;lista vacia o ultimo elemento
-  (if (or (= (length listofUsers) 0) (equal? (car listofUsers) '()))
+  ;lista vacia o ultimo elemento. (caso base)
+  (if (= (length listofUsers) 0)
+      ;Caso verdadero.
+      ;Se entrega lista nueva.
       (append newlist)
 
-      ;se ve elemento
+      ;Caso falso.
+      ;Se ve si el nombre de usuario ingresado, existe dentro del
+      ;elemento evaluado para reemplazarlo en la lista.
       (if (string=? (car (car listofUsers)) (car User))
-          ;Se crea lista con nuevo elemento.
+          ;Caso verdadero.
+          ;Se crea lista con nuevo elemento (reemplazo).
           (ModifiUser (cdr listofUsers) User (append newlist (list User)))
-          ;Se crea lista con el elemento puesto
+
+          ;Caso falso.
+          ;Se crea lista con el elemento correspondiente con anterioridad (no hay reemplazo).
           (ModifiUser (cdr listofUsers) User (append newlist (list (car listofUsers))))
           )
       )
   )
 
 ; Post
-; Función currificada comando de la función login la cual
-; crea un post con su propio ID, y asigna ese post al usuario el cual
-; pertenece.
+; Función currificada comando de la función login la cual crea un post que
+; sera guardado en el socialnetwork y posteriormente escribe la ID de ese
+; post a ese usuario.
+;DOMINIO: Socialnetwork.
+;RECORRIDO: date x content x list of strings.
+;RECORRIDO FINAL: Socialnetwork.
 
-;Se define entrada.
 (define post (lambda (socialn) (lambda (user) (lambda (date content . UserList)
                                  ;Se comprueba si los datos ingresados son
                                  ;correctos.
                                  (if (and (IsDate date) (string? content))
                                      ;Caso verdadero.
                                      ;Se genera nueva estructura socialnetwork
-                                     ;con los datos registrados del usuario.
+                                     ;con los el nuevo post y el usuario con la
+                                     ;ID de publicación registrada.
                                      (list (list-ref socialn 0) (list-ref socialn 1)
                                            (list-ref socialn 2) (list-ref socialn 3)
                                            (ModifiUser (list-ref socialn 4) (NewID user (length (list-ref socialn 5))) '())
@@ -91,4 +110,8 @@
   )
 
 ; BLOQUE DE EXPORTACIONES.
+; En este bloque se especifican las funciones las cuales se van a
+; exportar a otros archivos.
 (provide AreFriends)
+(provide ModifiUser)
+(provide post)

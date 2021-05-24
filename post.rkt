@@ -88,7 +88,7 @@
 (define post (lambda (socialn) (lambda (user) (lambda (date) (lambda (type content . UserList)
                                  ;Se comprueba si los datos ingresados son
                                  ;correctos.
-                                 (if (and (IsDate date) (string? content))
+                                 (if (and (IsDate date) (string? content) (string? type))
                                      ;Caso verdadero.
                                      ;Se genera nueva estructura socialnetwork
                                      ;con los el nuevo post y el usuario con la

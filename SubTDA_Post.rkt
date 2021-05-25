@@ -44,7 +44,7 @@
   ;Se agrega like al post.
   (CreatePost (list-ref post 0) (list-ref post 1) (list-ref post 2) (list-ref post 3)
               (list-ref post 4) (list-ref post 5)
-              (append (list-ref post 6) (list username)) (list-ref post 7))
+              (append (list-ref post 6) username) (list-ref post 7))
   )
 
 ; Shared.

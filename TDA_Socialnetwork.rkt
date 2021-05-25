@@ -1,11 +1,11 @@
+; Se le da a entender al interprete el uso del lenguaje scheme.
+#lang scheme
+
 ; DESCRIPCION GENERAL.
 ; Este archivo guarda el TDA socialnetwork y sus funciones relacionadas.
 ; El proposito de esto es documentar la estructura interna del tipo de dato
 ; abstracto pensado para la implementación del laboratorio, las funciones de
 ; propias del TDA y encriptado de información.
-
-; Se le da a entender al interprete el uso del lenguaje scheme.
-#lang scheme
 
 ; El TDA socialnetwork es una estructura que representa a la red social
 ; que el usuario maneja y esta se representa como una lista heterogenea.
@@ -17,6 +17,10 @@
 ; lista de enteros, los procesos de encriptado y desencriptado de información
 ; (funciones o procesos) y dos listas de 2 subestructuras del TDA que tendrán
 ; su propia organización interna.
+
+; BLOQUE DE IMPORTACIÓN.
+; Se piden funciones del TDA fecha.
+(require "TDA_Fecha.rkt")
 
 ;---------------------------------------------------------------------------------------------------------------
 
@@ -96,58 +100,6 @@
 
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-; FECHA:
-
-; ValidDate.
-; Función que comprueba si los elementos de date
-; son validos para una fecha.
-;DOMINIO: Integer x Integer x Integer.
-;RECORRIDO: Bool.
-
-(define (ValidDate a b c)
-  ;Se define condicional para ver si date
-  ;tiene valores pertenecientes a una fecha.
-  (and (< a 32) (< b 13) (> c 1930))
-  )
-
-; Date
-; Funcion que recibe de entrada 3 enteros
-; y devuelve una lista de ellos, lo que
-; representa la fecha.
-;DOMINIO: Integer x Integer x Integer.
-;RECORRIDO: List.
-
-(define (date a b c)
-  ;Se establece condicionales para comprobar
-  ;entradas de numeros enteros
-  (if (and (integer? a) (integer? b) (integer? c) (ValidDate a b c))
-      ;Caso verdadero se crea lista
-      ;representativa de fecha.
-      (list a b c)
-
-      ;Caso falso.
-      ;Se devuelve lista vacia.
-      (append '())
-      ))
-
-; IsDate.
-; Función que comprueba si una lista es
-; una lista date.
-;DOMINIO: List.
-;RECORRIDO: Bool.
-
-(define (IsDate lista)
-  ;Se establece condicional para ver si
-  ;la lista cumple condiciones de una
-  ;lista date.
-  (and (= 3 (length lista)) ;Tamaño de lista
-       (map integer? lista) ;lista homogenea de nuemeros enteros.
-       (ValidDate (list-ref lista 0) (list-ref lista 1) (list-ref lista 2)) ;Fecha valida
-       ))
-;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; PERTENENCIA:
 ; IsSocialnetwork.
 ; Función que comprueba si un elemento entregado
@@ -177,7 +129,118 @@
 
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+;SELECTORES.
 
+; NameSocial.
+; Se define función otorga el nombre de socialnetwork.
+;DOMINIO: Socialnetwork.
+;RECORRIDO: String.
+
+(define (NameSocial socialn)
+  ;Se comprueba si se recibe un socialnetwork.
+  (if (IsSocialnetwork socialn)
+      ;Caso verdadero.
+      ;Se entrega nombre de red social.
+      (car socialn)
+
+      ;Caso falso.
+      ;Se entrega string de error.
+      "No es socialnetwork"
+      )
+  )
+
+; DateSocial.
+; Se define función otorga decha de creación de socialnetwork.
+;DOMINIO: Socialnetwork.
+;RECORRIDO: Date.
+
+(define (DateSocial socialn)
+  ;Se comprueba si se recibe un socialnetwork.
+  (if (IsSocialnetwork socialn)
+      ;Caso verdadero.
+      ;Se entrega fecha de creación de red social.
+      (car (cdr socialn))
+
+      ;Caso falso.
+      ;Se entrega un date de error.
+      (date 2 1 1930)
+      )
+  )
+
+; EncrySocial.
+; Se define función otorga función de encriptado de socialnetwork.
+;DOMINIO: Socialnetwork.
+;RECORRIDO: procedure.
+
+(define (EncrySocial socialn)
+  ;Se comprueba si se recibe un socialnetwork.
+  (if (IsSocialnetwork socialn)
+      ;Caso verdadero.
+      ;Se entrega función de encriptado.
+      (car (cddr socialn))
+
+      ;Caso falso.
+      ;Se entrega función map.
+      map
+      )
+  )
+
+; DecrySocial.
+; Se define función otorga función de desencriptado de socialnetwork.
+;DOMINIO: Socialnetwork.
+;RECORRIDO: procedure.
+
+(define (DecrySocial socialn)
+  ;Se comprueba si se recibe un socialnetwork.
+  (if (IsSocialnetwork socialn)
+      ;Caso verdadero.
+      ;Se entrega función de desencriptado.
+      (car (cdddr socialn))
+
+      ;Caso falso.
+      ;Se entrega función map.
+      map
+      )
+  )
+
+; UserSocial.
+; Se define función otorga lista de usuarios de socialnetwork.
+;DOMINIO: Socialnetwork.
+;RECORRIDO: list.
+
+(define (UserSocial socialn)
+  ;Se comprueba si se recibe un socialnetwork.
+  (if (IsSocialnetwork socialn)
+      ;Caso verdadero.
+      ;Se entrega lista de usuarios.
+      (car (cddddr socialn))
+
+      ;Caso falso.
+      ;Se entrega lista vacia.
+      '()
+      )
+  )
+
+; PostSocial.
+; Se define función otorga lista de publicaciones de socialnetwork.
+;DOMINIO: Socialnetwork.
+;RECORRIDO: list.
+
+(define (PostSocial socialn)
+  ;Se comprueba si se recibe un socialnetwork.
+  (if (IsSocialnetwork socialn)
+      ;Caso verdadero.
+      ;Se entrega lista de post.
+      (car (reverse socialn))
+
+      ;Caso falso.
+      ;Se entrega lista vacia.
+      '()
+      )
+  )
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; BLOQUE DE EXPORTACIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
@@ -185,7 +248,10 @@
 (provide EncryptFunction)
 (provide Decryptation)
 (provide DecryptFunction)
-(provide date)
-(provide ValidDate)
-(provide IsDate)
 (provide IsSocialnetwork)
+(provide NameSocial)
+(provide DateSocial)
+(provide EncrySocial)
+(provide DecrySocial)
+(provide UserSocial)
+(provide PostSocial)

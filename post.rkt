@@ -39,7 +39,7 @@
 
                                                    ;Caso falso
                                                    ;se llama otra vez a la función.
-                                                   (AreFriends (cdr listfriends) friend)
+                                                   ((AreFriends (cdr listfriends)) friend)
                                                    )
                                                )
                                            )

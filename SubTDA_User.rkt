@@ -1,9 +1,9 @@
+; Se le da entender al interprete el uso de lenguaje scheme.
+#lang scheme
+
 ; DESCRIPCIÓN GENERAL.
 ; Este archivo describe la subestructura del socialnetwork
 ; '(User), desde sus elementos hasta sus funciones propias. 
-
-; Se le da entender al interprete el uso de lenguaje scheme.
-#lang scheme
 
 ; Se pide información de funciones del archivo "TDA_socialnetwork.rkt"
 (require "TDA_socialnetwork.rkt")

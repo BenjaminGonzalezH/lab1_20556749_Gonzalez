@@ -16,6 +16,10 @@
 ;(string), la lista de seguidores, lista de usuarios seguidos y las ID
 ; de las publicaciones realizadas por ese usuario.
 
+; BLOQUE DE IMPORTACIÓN.
+; Se piden funciones del TDA fecha.
+(require "TDA_Fecha.rkt")
+
 ;---------------------------------------------------------------------
 
 ;FUNCIONES PROPIAS.
@@ -125,6 +129,72 @@
       ;Se entrega un User sin cambios.
       (append User)
       ))
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+; SELECTORES.
+
+; NameUser.
+; Se define función que otorga el nombre de usuario.
+;DOMINIO: User.
+;RECORRIDO: String.
+
+(define (NameUser User)
+  ;Se entrega nombre de usuario.
+  (car User)
+  )
+
+; PassUser.
+; Se define función que otorga la contraseña de usuario.
+;DOMINIO: User.
+;RECORRIDO: String.
+
+(define (PassUser User)
+  ;Se entrega contraseña.
+  (car (cdr User))
+  )
+
+; DateUser.
+; Se define función que otorga la fecha de creación de usuario.
+;DOMINIO: User.
+;RECORRIDO: Date.
+
+(define (DateUser User)
+  ;Se entrega fecha de creación.
+  (car (cddr User))
+  )
+
+; WersUser.
+; Se define función que otorga lista de seguidores de usuario.
+;DOMINIO: User.
+;RECORRIDO: list.
+
+(define (WersUser User)
+  ;Se entrega lista de seguidores.
+  (car (cdddr User))
+  )
+
+; WingUser.
+; Se define función que otorga lista de seguidos de usuario.
+;DOMINIO: User.
+;RECORRIDO: list.
+
+(define (WingUser User)
+  ;Se entrega lista de seguidos.
+  (car (cddddr User))
+  )
+
+; IDsUser.
+; Se define función que otorga lista de ID's de publicaciones de usuario.
+;DOMINIO: User.
+;RECORRIDO: list.
+
+(define (IDsUser User)
+  ;Se entrega lista de ID's.
+  (car (reverse User))
+  )
+
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

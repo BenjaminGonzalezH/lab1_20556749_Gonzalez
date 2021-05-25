@@ -194,8 +194,8 @@
   ;Se entrega lista de ID's.
   (car (reverse User))
   )
-
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; BLOQUE DE EXPORTANCIÓN.
@@ -206,3 +206,9 @@
 (provide NewID)
 (provide NewFollower)
 (provide NewFollowing)
+(provide NameUser)
+(provide PassUser)
+(provide DateUser)
+(provide WersUser)
+(provide WingUser)
+(provide IDsUser)

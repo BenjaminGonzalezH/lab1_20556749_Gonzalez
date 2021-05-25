@@ -26,12 +26,14 @@
                                         (list (list-ref socialn 0) (list-ref socialn 1)
                                               (list-ref socialn 2) (list-ref socialn 3)
                                               (list-ref socialn 4)
-                                              (ChangePost (list-ref socialn 5) (list-ref (list-ref socialn 5) ID) '())
+                                              (ChangePost (list-ref socialn 5)
+                                                          (NewComment (list-ref (list-ref socialn 5) ID) date "ella" coment)
+                                                          '())
                                               )
 
                                         ;Caso falso.
                                         ;Se entrega socialnetwork sin cambios
-                                        (socialn)
+                                        socialn
                                               )
                                     )
                   )

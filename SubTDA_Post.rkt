@@ -22,9 +22,9 @@
 ; implementación no se establecen condiciones.
 
 ;Se define entrada.
-(define (CreatePost User type ID Content likes Mencion share comments)
+(define (CreatePost User ID type Content likes Mencion share comments)
   ;Se construye lista de elementos.
-  (list User type ID Content likes Mencion share comments))
+  (list User ID type Content likes Mencion share comments))
 
 ; Liked.
 ; Función que agrega un like al post.

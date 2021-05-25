@@ -241,6 +241,43 @@
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+; BUSQUEDA.
+; ExistBefore.
+; Función que comprueba si un usuario existe con
+; anterioridad en una socialnetwork en base a nombres.
+;DOMINIO: List of Users x String.
+;RECORRIDO: Bool.
+;RECURSIÓN: Natural.
+;NOTA: el booleano entregado sigue la pregunta
+;"¿El nombre dado por entrada no existe en ningún
+;usuario de la lista?"
+
+(define (ExistBefore lista nombre)
+  ;Se establece caso base de recursión de la función.
+  (if (= (length lista) 0)
+      ;Caso verdadero.
+      ;Si no se encontro ningun usuario
+      ;igual al usuario que se desea ingresar se
+      ;entrega un verdadero.
+      (and #t)
+
+      ;Caso falso.
+      ;Se comprueba si el elemento actual es
+      ;igual al nombre.
+      (if (string=? (car (car lista)) nombre)
+          ;Caso verdadero
+          ;Se retorna una operación que da falso.
+          (and #f)
+
+          ;Caso falso.
+          ;Se llama de nuevo a la función.
+          (ExistBefore (cdr lista) nombre)
+          )
+      )
+  )
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; BLOQUE DE EXPORTACIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
@@ -255,3 +292,4 @@
 (provide DecrySocial)
 (provide UserSocial)
 (provide PostSocial)
+(provide ExistBefore)

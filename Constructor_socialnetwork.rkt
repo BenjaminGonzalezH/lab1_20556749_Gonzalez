@@ -1,12 +1,13 @@
+; Se da a entender uso del lenguaje scheme al interprete.
+#lang scheme
+
 ; DESCRIPCION GENERAL.
 ; En este archivo se guarda la función constructor
 ; del TDA socialnetwork.
 
-; Se da a entender uso del lenguaje scheme al interprete.
-#lang scheme
-
 ; Se pide información de funciones del archivo "TDA_socialnetwork.rkt"
 (require "TDA_socialnetwork.rkt")
+(require "TDA_Fecha.rkt")
 
 ; socialnetwork
 ; Función que crea la representación del TDA socialnetwork
@@ -26,8 +27,8 @@
 
       ;Caso falso.
       ;Se crea un TDA socialnetwork de error,
-      ;la cual posee fecha del año 1929.
-      ;(fecha no valida para un socialnetwork)
+      ;la cual posee fecha del año 1929
+      ;(fecha no valida para un socialnetwork).
       (list "Error" '(14 5 1929) EncryptFunction DecryptFunction '() '())
       ))
 

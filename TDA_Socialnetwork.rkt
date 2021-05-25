@@ -21,6 +21,7 @@
 ; BLOQUE DE IMPORTACIÓN.
 ; Se piden funciones del TDA fecha.
 (require "TDA_Fecha.rkt")
+(require "SubTDA_User.rkt")
 
 ;---------------------------------------------------------------------------------------------------------------
 
@@ -264,7 +265,7 @@
       ;Caso falso.
       ;Se comprueba si el elemento actual es
       ;igual al nombre.
-      (if (string=? (car (car lista)) nombre)
+      (if (string=? (NameUser (car lista)) nombre)
           ;Caso verdadero
           ;Se retorna una operación que da falso.
           (and #f)
@@ -275,6 +276,70 @@
           )
       )
   )
+
+; ValidUser
+; Se define función que comprueba si un usuario existe en la
+; red social y la contraseña relacionada a el es correcta.
+;DOMINIO: List of User x String x String.
+;RECORRIDO: Bool.
+;RECURSIÓN: Natural.
+
+(define (ValidUser list user pass)
+  ;Se define caso base para recursión.
+  (if (= (length list) 0)
+      ;Caso verdadero.
+      ;Si no se encontro ningún usuario existente
+      ;entonces se retorna falso.
+      (and #f)
+
+      ;Caso falso.
+      ;Se comprueba si el usuario y contraseña
+      ;coinciden con el elemento actual de lista
+      ;evaluado.
+      (if (and (string=? (NameUser (car list)) user)
+               (string=? (PassUser (car list)) pass))
+          ;Caso verdadero.
+          ;Se retorna verdadero.
+          (and #t)
+
+          ;Caso falso.
+          ;Se llama de nuevo a la función con la lista
+          ;acortada.
+          (ValidUser (cdr list) user pass)
+          )
+      )
+  )
+
+; SearchUser
+; Se define función que busca un usuario y lo
+; entrega para su manipulación.
+;DOMINIO: list x name.
+;RECORRIDO: User.
+;RECURSIÓN: Natural.
+
+(define (SearchUser ListUsers name)
+  ;Se establece caso base.
+  ;Fin de la lista.
+  (if (= (length ListUsers) 0)
+      ;Caso verdadero.
+      ;Se entrega un usuario estandar de error.
+      (Create_User "MalaEntrada" "EntradaIncorrecta" (date 1 1 1931) '() '() '())
+
+      ;Caso falso.
+      ;Se comprueba si el ususario actual en evaluación
+      ;es el que se esta buscando.
+      (if (string=? (NameUser (car ListUsers)) name)
+          ;Caso verdadero.
+          ;Se entrega ese usuario.
+          (car ListUsers)
+
+          ;Caso Falso.
+          ;Se llama otra vez a la función.
+          (SearchUser (cdr ListUsers) name)
+          )
+      )
+  )
+
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -293,3 +358,5 @@
 (provide UserSocial)
 (provide PostSocial)
 (provide ExistBefore)
+(provide ValidUser)
+(provide SearchUser)

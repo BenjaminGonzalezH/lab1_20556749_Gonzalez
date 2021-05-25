@@ -7,9 +7,11 @@
 
 ; BLOQUE DE IMPORTACION.
 (require "SubTDA_Post.rkt")
+(require "SubTDA_User.rkt")
 (require "Register.rkt")
 (require "TDA_Socialnetwork.rkt")
 (require "Constructor_socialnetwork.rkt")
+(require "follow.rkt")
 (require "post.rkt")
 
 ; ChangePost
@@ -46,7 +48,9 @@
                                                      (list (list-ref socialn 0) (list-ref socialn 1)
                                                            (list-ref socialn 2) (list-ref socialn 3)
                                                            (list-ref socialn 4)
-                                                           (ChangePost (list-ref socialn 5) (NewShare (list-ref (list-ref socialn 5) ID) Userlist) '()))
+                                                           (ChangePost (list-ref socialn 5)
+                                                                       (NewShare (list-ref (list-ref socialn 5) ID)
+                                                                                 (filter (AreFriends (list-ref user 4))  Userlist)) '()))
 
                                                      ;Caso falso.
                                                      ;Se entrega socialnetwork sin cambios.

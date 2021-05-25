@@ -30,7 +30,7 @@
 
                                      ;Caso falso
                                      ;Se entrega el socialnetwork sin cambios.
-                                     (socialn)
+                                     socialn
                                      )
                                  )
                )

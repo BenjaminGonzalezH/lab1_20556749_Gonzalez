@@ -1,9 +1,9 @@
-; DESCRIPCIÓN GENERAL.
-; En este archivo se guarda la función post.
-
 ; Se le da a entender al interprete del uso del
 ; lenguaje scheme.
 #lang scheme
+
+; DESCRIPCIÓN GENERAL.
+; En este archivo se guarda la función post.
 
 ; BLOQUE DE IMPORTACIÓN.
 ; En este bloque se especifican los archivos donde
@@ -11,9 +11,7 @@
 (require "SubTDA_Post.rkt")
 (require "SubTDA_User.rkt")
 (require "TDA_Fecha.rkt")
-(require "Register.rkt")
 (require "TDA_Socialnetwork.rkt")
-(require "Constructor_socialnetwork.rkt")
 
 ; AreFriends
 ; Se crea función recursiva si ve que si un usuario
@@ -64,7 +62,7 @@
       ;Caso falso.
       ;Se ve si el nombre de usuario ingresado, existe dentro del
       ;elemento evaluado para reemplazarlo en la lista.
-      (if (string=? (car (car listofUsers)) (car User))
+      (if (string=? (NameUser (car listofUsers)) (NameUser User))
           ;Caso verdadero.
           ;Se crea lista con nuevo elemento (reemplazo).
           (ModifiUser (cdr listofUsers) User (append newlist (list User)))
@@ -94,15 +92,15 @@
                                      ;Se genera nueva estructura socialnetwork
                                      ;con los el nuevo post y el usuario con la
                                      ;ID de publicación registrada.
-                                     (list (list-ref socialn 0) (list-ref socialn 1)
-                                           (list-ref socialn 2) (list-ref socialn 3)
-                                           (ModifiUser (list-ref socialn 4) (NewID user (length (list-ref socialn 5))) '())
-                                           (append (list-ref socialn 5)
-                                                   (list (CreatePost (car user) (length (list-ref socialn 5)) type ((list-ref socialn 2) content) 0
-                                                                (filter (AreFriends (list-ref user 4))  UserList) '() '()))))
+                                     (list (NameSocial socialn) (DateSocial socialn)
+                                           (EncrySocial socialn) (DecrySocial socialn)
+                                           (ModifiUser (UserSocial socialn) (NewID user (length (PostSocial socialn))) '())
+                                           (append (PostSocial socialn)
+                                                   (list (CreatePost (NameUser user) (length (PostSocial socialn)) type ((EncrySocial socialn) content) 0
+                                                                (filter (AreFriends (WingUser user))  UserList) '() '()))))
                                      ;Caso falso.
                                      ;Se entrega socialnetwork sin modificaciones.
-                                     (append socialn)
+                                     socialn
                                      )
                                                 )
                                  )

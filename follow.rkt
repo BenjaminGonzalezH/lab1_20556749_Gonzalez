@@ -1,17 +1,16 @@
+;Se da a entender al interprete el uso de lenguaje shceme.
+#lang scheme
+
 ;DESCRIPCIÓN GENERAL.
 ; En este archivo se guarda la función follow
 ; del socialnetwork.
-
-;Se da a entender al interprete el uso de lenguaje shceme.
-#lang scheme
 
 ; Bloque de importaciones.
 (require "SubTDA_User.rkt")
 (require "TDA_Socialnetwork.rkt")
 (require "Constructor_socialnetwork.rkt")
 (require "SubTDA_Post.rkt")
-(require "Register.rkt")
-(require "post.rkt")
+(require "TDA_Fecha.rkt")
 
 ; follow
 ; Función currificada que permite a un usuario seguir a una persona
@@ -28,15 +27,15 @@
                                                   ;en la lista de usuarios del socialnetwork y
                                                   ;no se haya seguido con anterioridad.
                                                   (if (and (IsDate date) (string? User)
-                                                           (not(ExistBefore (list-ref socialn 4) User))
-                                                           (not (string=? (car user) User))
-                                                           (not ((AreFriends (list-ref user 4)) User)))
+                                                           (not(ExistBefore (UserSocial socialn) User))
+                                                           (not (string=? (NameUser user) User))
+                                                           (not ((AreFriends (UserSocial user)) User)))
                                                       ;Caso verdadero
                                                       ;se crea otro socialnetwork con el nuevo follow.
-                                                      (list (list-ref socialn 0) (list-ref socialn 1)
-                                                            (list-ref socialn 2) (list-ref socialn 3)
-                                                            (ModifiUser (list-ref socialn 4) (NewFollowing user User) '())
-                                                            (list-ref socialn 5))
+                                                      (list (NameSocial socialn) (DateSocial socialn)
+                                                            (EncrySocial socialn) (DecrySocial socialn)
+                                                            (ModifiUser (UserSocial socialn) (NewFollowing user User) '())
+                                                            (PostSocial socialn))
                                                             
 
                                                       ;Caso falso.

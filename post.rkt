@@ -10,6 +10,7 @@
 ; se requieren funciones.
 (require "SubTDA_Post.rkt")
 (require "SubTDA_User.rkt")
+(require "TDA_Fecha.rkt")
 (require "Register.rkt")
 (require "TDA_Socialnetwork.rkt")
 (require "Constructor_socialnetwork.rkt")

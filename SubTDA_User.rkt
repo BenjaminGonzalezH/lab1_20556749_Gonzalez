@@ -345,3 +345,6 @@
 (provide IDsUser)
 (provide AreFriends)
 (provide ModifiUser)
+(provide WerString)
+(provide NumberString)
+(provide user->string)

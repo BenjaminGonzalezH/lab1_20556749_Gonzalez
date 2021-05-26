@@ -9,29 +9,36 @@
 (require "SubTDA_Post.rkt")
 (require "Register.rkt")
 (require "TDA_Socialnetwork.rkt")
+(require "TDA_Fecha.rkt")
 (require "Constructor_socialnetwork.rkt")
-(require "post.rkt")
-(require "share.rkt")
+
 
 ; Like
 ; Función que da like a una publicación y guardarla en
 ; socialnetwork.
-(define Like (lambda (socialn) (lambda (date ID)
+;DOMINIO: socialnetwork.
+;RECORRIDO: user x date x integer.
+;RECORRIDO FINAL: socialnetwork.
+
+(define like (lambda (socialn) (lambda (user) (lambda (date) (lambda (ID)
                                  ;Se ve si los datos de la función son
                                  ;correctos.
-                                 (if (and (IsDate date) (number? ID))
+                                 (if (and (IsDate date) (integer? ID))
                                      ;Caso verdadero.
                                      ;Se crea nuevo socialnetwork
                                      ;con la publicación con like.
-                                     (list (list-ref socialn 0) (list-ref socialn 1)
-                                           (list-ref socialn 2) (list-ref socialn 3)
-                                           (list-ref socialn 4)
-                                           (ChangePost (list-ref socialn 5) (Liked (list-ref (list-ref socialn 5) ID)) '()))
+                                     (list (NameSocial socialn) (DateSocial socialn)
+                                           (EncrySocial socialn) (DecrySocial socialn)
+                                           (UserSocial socialn)
+                                           (ChangePost (PostSocial socialn) (Liked (list-ref (PostSocial socialn) ID)) '()))
 
                                      ;Caso falso
                                      ;Se entrega el socialnetwork sin cambios.
-                                     socialn
+                                     (append socialn)
                                      )
                                  )
                )
-  )
+  )))
+
+; BLOQUE DE EXPORTACIONES.
+(provide like)

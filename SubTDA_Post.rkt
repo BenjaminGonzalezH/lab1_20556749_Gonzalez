@@ -6,7 +6,6 @@
 ; '(post), desde sus elementos hasta sus funciones propias.
 
 ; BLOQUE DE IMPORTACIÓN.  
-(require "TDA_Socialnetwork.rkt")
 (require "TDA_Fecha.rkt")
 
 ; La subestructura post posee los siguientes elementos.
@@ -79,6 +78,35 @@
   )
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+; CAMBIO DE LISTA DE PUBLICACIONES.
+; ChangePost
+; Se define función que cambia el elemento
+; de una lista de post por otro modificado.
+;DOMINIO: List.
+;RECORRIDO: List.
+;RECURSIÓN: natural.
+
+(define (ChangePost listofpost post newlist)
+  ;Lista vacia o ultimo elemento.
+  (if (= (length listofpost) 0)
+      (append newlist)
+
+      ;se ve elemento
+      (if (= (list-ref (car listofpost) 1) (list-ref post 1))
+          ;Caso verdadero reemplazo.
+          (ChangePost (cdr listofpost) post (append newlist (list post)))
+
+          ;Caso falso continua.
+          (ChangePost (cdr listofpost) post (append newlist (list (car listofpost))))
+          )
+      )
+  )
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; BLOQUE DE EXPORTACIÓN.
 ; En esta sección se especifican las funciones las cuales se
 ; exportan a otros archivos.
@@ -86,3 +114,4 @@
 (provide NewShare)
 (provide Liked)
 (provide NewComment)
+(provide ChangePost)

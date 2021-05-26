@@ -16,6 +16,7 @@
 (require "follow.rkt")
 (require "share.rkt")
 (require "comment.rkt")
+(require "Like.rkt")
 
 ; Login
 ; Se define la función login como aquella que comprueba el

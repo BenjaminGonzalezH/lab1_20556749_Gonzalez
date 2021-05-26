@@ -14,6 +14,7 @@
 (require "Register.rkt")
 (require "post.rkt")
 (require "follow.rkt")
+(require "share.rkt")
 
 ; Login
 ; Se define la función login como aquella que comprueba el

@@ -13,6 +13,7 @@
 (require "Constructor_socialnetwork.rkt")
 (require "Register.rkt")
 (require "post.rkt")
+(require "follow.rkt")
 
 ; Login
 ; Se define la función login como aquella que comprueba el

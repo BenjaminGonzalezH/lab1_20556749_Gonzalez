@@ -9,7 +9,6 @@
 (require "SubTDA_User.rkt")
 (require "TDA_Socialnetwork.rkt")
 (require "Constructor_socialnetwork.rkt")
-(require "SubTDA_Post.rkt")
 (require "TDA_Fecha.rkt")
 
 ; follow
@@ -29,18 +28,20 @@
                                                   (if (and (IsDate date) (string? User)
                                                            (not(ExistBefore (UserSocial socialn) User))
                                                            (not (string=? (NameUser user) User))
-                                                           (not ((AreFriends (UserSocial user)) User)))
+                                                           (not ((AreFriends (WingUser user)) User)))
                                                       ;Caso verdadero
                                                       ;se crea otro socialnetwork con el nuevo follow.
                                                       (list (NameSocial socialn) (DateSocial socialn)
                                                             (EncrySocial socialn) (DecrySocial socialn)
-                                                            (ModifiUser (UserSocial socialn) (NewFollowing user User) '())
+                                                            (ModifiUser
+                                                             (ModifiUser (UserSocial socialn) (NewFollowing user User) '())
+                                                             (NewFollower (SearchUser (UserSocial socialn) User) (NameUser user)) '())
                                                             (PostSocial socialn))
                                                             
 
                                                       ;Caso falso.
                                                       ;Se da socialnetwork sin cambios.
-                                                      socialn
+                                                      (append socialn)
                                                       )
                                                   )
                                    )

@@ -7,13 +7,14 @@
 
 ; BLOQUE DE IMPORTACIÓN.  
 (require "TDA_Fecha.rkt")
+(require "SubTDA_User.rkt")
 
 ; La subestructura post posee los siguientes elementos.
 
-(define post '("user" ID "type" "content" likes '(mencion) '(share) '(comments)))
+(define post '("user" ID date "content" likes '(mencion) '(share) '(comments)))
 
 ; Esta conformada por el nombre del autor (string), la ID del post (entero)
-; el tipo de dato de la publicación (video),el contenido (string),
+; la fecha de la publicación (date),el contenido (string),
 ; los likes que recibe la publicación, las menciones (list de strings), a quienes se compartió
 ; y los comentarios (listas de string y otra subestructura).
 
@@ -80,6 +81,51 @@
 
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+; SELECTORES.
+; Se definen funciones que otorgan partes de
+; las estructura Post.
+;DOMINIO: post.
+
+;RECORRIDO: string.
+(define (UserPost Post)
+  (car Post)
+  )
+
+(define (ContentPost Post)
+  (car (cdddr Post))
+  )
+
+;RECORRIDO: date.
+(define (DatePost Post)
+  (car (cddr Post))
+  )
+
+;RECORRIDO: integer.
+(define (IDPost Post)
+  (car (cdr Post))
+  )
+
+(define (LikesPost Post)
+  (car (cddddr Post))
+  )
+
+;RECORRIDO: lista.
+(define (MentionPost Post)
+  (car (cddr (reverse Post)))
+  )
+
+(define (SharePost Post)
+  (car (cdr (reverse Post)))
+  )
+
+(define (CommentPost Post)
+  (car (reverse Post))
+  )
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; CAMBIO DE LISTA DE PUBLICACIONES.
 ; ChangePost
 ; Se define función que cambia el elemento
@@ -107,6 +153,28 @@
 
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+; CAMBIO DE TIPO DE DATOS.
+; post->string.
+; Se define función que transforma un TDA post.
+; A un string.
+;DOMINIO: Post.
+;RECORRIDO: String.
+
+(define (post->string post)
+  ;Se produce transdormación del dato post
+  (string-append (string-append "Autor: " (UserPost post) "\n")
+                 (string-append "ID: " (number->string (IDPost post)) "\n")
+                 (string-append "Fecha: " (NumberString (DatePost post) "") "\n")
+                 (string-append "Likes: " (number->string (LikesPost post)) "\n")
+                 (string-append "Mentions: " (WerString (MentionPost post) "") "\n")
+                 (string-append "Share: " (WerString (SharePost post) "") "\n\n")
+                 ))
+                 
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; BLOQUE DE EXPORTACIÓN.
 ; En esta sección se especifican las funciones las cuales se
 ; exportan a otros archivos.
@@ -114,4 +182,13 @@
 (provide NewShare)
 (provide Liked)
 (provide NewComment)
+(provide UserPost)
+(provide IDPost)
+(provide DatePost)
+(provide ContentPost)
+(provide LikesPost)
+(provide MentionPost)
+(provide SharePost)
+(provide CommentPost)
 (provide ChangePost)
+(provide post->string)

@@ -228,6 +228,7 @@
                      )
   )
 
+; MODIFICACIÓN DE LISTA.
 ; ModifiUser
 ; Se define función crea una lista de usuarios
 ; cambiando uno de sus elementos.
@@ -260,6 +261,74 @@
 
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+; WerString.
+; Se establece función que asiste a user->string
+; generando un string de lista de nombres de usuarios.
+;DOMINIO: list x string.
+;RECORRIDO: string.
+;RECURSION: natural.
+
+(define (WerString list string)
+  ;Caso base.
+  ;Fin de lista.
+  (if (= (length list) 0)
+      ;Caso verdadero.
+      ;Se da string generado.
+      string
+
+      ;Caso Falso.
+      ;Se establece otro llamado recursivo, reduciendo la lista
+      ;y agregando nombre al string de nombres.
+      (WerString (cdr list) (string-append string " " (car list)))
+      )
+  )
+
+; NumberString.
+; Se define función que crea un string de
+; lista de numeros.
+;DOMINIO: list x string.
+;RECORRIDO: string.
+;RECURSION: natural.
+
+(define (NumberString list string)
+  ;Caso base.
+  ;Fin de lista.
+  (if (= (length list) 0)
+      ;Caso verdadero.
+      ;Se da string generado.      
+      string
+
+      ;Caso Falso.
+      ;Se establece otro llamado recursivo, reduciendo la lista
+      ;y agregando numero al string de numeros.
+      (NumberString (cdr list) (string-append string " " (number->string (car list))))
+      )
+  )
+
+; CAMBIO DE TIPO DE DATOS.
+; user->string.
+; Se define función la cual hace que un usuario se represente
+; como un string.
+;DOMINIO: user.
+;RECORRIDO: 
+
+(define (user->string User)
+  ;Se establece string del usuario.
+  (string-append (string-append "Nombre de Usuario: " (NameUser User) "\n")
+          (string-append "Fecha de Creación: "
+                         (number->string (car (DateUser User))) " "
+                         (number->string (car (cdr (DateUser User)))) " "
+                         (number->string (car (cddr (DateUser User)))) "\n")
+          (string-append "Seguidores: " (WerString (WersUser User) "") "\n")
+          (string-append "Seguidos: " (WerString (WingUser User) "") "\n")
+          (string-append "ID's publicaciones: " (NumberString (IDsUser User) "") "\n\n")
+          )
+  )
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; BLOQUE DE EXPORTANCIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
@@ -275,3 +344,4 @@
 (provide WingUser)
 (provide IDsUser)
 (provide AreFriends)
+(provide ModifiUser)

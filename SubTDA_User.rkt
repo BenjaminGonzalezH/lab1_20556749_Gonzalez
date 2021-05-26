@@ -5,9 +5,6 @@
 ; Este archivo describe la subestructura del socialnetwork
 ; '(User), desde sus elementos hasta sus funciones propias. 
 
-; Se pide información de funciones del archivo "TDA_socialnetwork.rkt"
-(require "TDA_socialnetwork.rkt")
-
 ; La subestructura user posee los siguientes elementos.
 
 (define user '("name" "password" '(date) '(followers) '(following) '(IDpublications)))
@@ -198,6 +195,71 @@
 
 
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+; BUSQUEDA
+; AreFriends
+; Se crea función recursiva si ve que si un usuario
+; esta en la lista de seguidores de otro.
+;DOMINIO: list of strings x string.
+;RECORRIDO: Bool.
+;RECURSIÓN: Natural.
+
+(define AreFriends (lambda (listfriends) (lambda (friend)
+                                           ;Caso Base
+                                           ;No se encuantra ninguna coincidencia
+                                           (if (= (length listfriends) 0)
+                                               ;Caso verdadero
+                                               ;Se entrega falso.
+                                               (and #f)
+
+                                               ;Caso falso
+                                               ;Se verifica si coinciden los nombres con el elemento
+                                               ;en lista de amigos.
+                                               (if (string=? friend (car listfriends))
+                                                   ;Caso verdadero
+                                                   ;se entrega true.
+                                                   (and #t)
+
+                                                   ;Caso falso
+                                                   ;se llama otra vez a la función.
+                                                   ((AreFriends (cdr listfriends)) friend)
+                                                   )
+                                               )
+                                           )
+                     )
+  )
+
+; ModifiUser
+; Se define función crea una lista de usuarios
+; cambiando uno de sus elementos.
+;DOMINIO: List of Users x User x list.
+;RECORRIDO: List of Users.
+;RECURSIÓN: Natural.
+
+(define (ModifiUser listofUsers User newlist)
+  ;lista vacia o ultimo elemento. (caso base)
+  (if (= (length listofUsers) 0)
+      ;Caso verdadero.
+      ;Se entrega lista nueva.
+      newlist
+
+      ;Caso falso.
+      ;Se ve si el nombre de usuario ingresado, existe dentro del
+      ;elemento evaluado para reemplazarlo en la lista.
+      (if (string=? (NameUser (car listofUsers)) (NameUser User))
+          ;Caso verdadero.
+          ;Se crea lista con nuevo elemento (reemplazo).
+          (ModifiUser (cdr listofUsers) User (append newlist (list User)))
+
+          ;Caso falso.
+          ;Se crea lista con el elemento correspondiente con anterioridad (no hay reemplazo).
+          (ModifiUser (cdr listofUsers) User (append newlist (list (car listofUsers))))
+          )
+      )
+  )
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; BLOQUE DE EXPORTANCIÓN.
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
@@ -212,3 +274,4 @@
 (provide WersUser)
 (provide WingUser)
 (provide IDsUser)
+(provide AreFriends)

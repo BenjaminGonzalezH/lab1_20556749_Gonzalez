@@ -23,7 +23,9 @@
 (define like (lambda (socialn) (lambda (user) (lambda (date) (lambda (ID)
                                  ;Se ve si los datos de la función son
                                  ;correctos.
-                                 (if (and (IsDate date) (integer? ID))
+                                 (if (and (IsDate date) (integer? ID)
+                                          (or (< (+ ID 1) (length (PostSocial socialn)))
+                                              (= (+ ID 1) (length (PostSocial socialn)))))
                                      ;Caso verdadero.
                                      ;Se crea nuevo socialnetwork
                                      ;con la publicación con like.

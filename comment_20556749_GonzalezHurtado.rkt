@@ -19,6 +19,8 @@
                                     ;ingresión de datos
                                     (if (and (IsDate date) (integer? ID)
                                              (string? coment)
+                                             (or (< (+ ID 1) (length (PostSocial socialn)))
+                                                 (= (+ ID 1) (length (PostSocial socialn))))
                                              ((AreFriends (WingUser user)) (car (list-ref (PostSocial socialn) ID))))
                                         ;Caso verdadero.
                                         ;Se crea nueva estructura socialnetwork.

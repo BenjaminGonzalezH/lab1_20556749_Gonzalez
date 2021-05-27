@@ -19,7 +19,10 @@
                                                  ;Se comprueban si los datos imgresados son correctos
                                                  ;para ingresar información a la lista.
                                                  (if (and (IsDate date) (integer? ID)
-                                                          (> (length Userlist) 0))
+                                                          (> (length Userlist) 0)
+                                                          (or (< (+ ID 1) (length (PostSocial socialn)))
+                                                              (= (+ ID 1) (length (PostSocial socialn))))
+                                                              )
                                                      ;Caso verdadero.
                                                      ;Se crea nuevo socialnetwork con
                                                      ;elemento cambiado.

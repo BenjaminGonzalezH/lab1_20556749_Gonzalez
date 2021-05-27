@@ -40,7 +40,7 @@
 
       ;Caso falso.
       ;Se devuelve map.
-      map
+      comand
       )
   )
 

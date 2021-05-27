@@ -29,7 +29,7 @@
       ;Se crea un TDA socialnetwork de error,
       ;la cual posee fecha del año 1929
       ;(fecha no valida para un socialnetwork).
-      (list "Error" '(14 5 1929) EncryptFunction DecryptFunction '() '())
+      (list "Error" '(14 5 1929) encryptFunction decryptFunction '() '())
       ))
 
 ; BLOQUE DE EXPORTACIONES

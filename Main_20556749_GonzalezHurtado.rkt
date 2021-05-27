@@ -20,9 +20,9 @@
 
 ;socialnetwork.
 
-(define emptyMB (socialnetwork "My Space" (date 25 10 2021) EncryptFunction DecryptFunction))
-(define emptyYT (socialnetwork "Youtube" (date 25 10 2021) EncryptFunction DecryptFunction))
-(define emptyTW (socialnetwork "Twitter" (date 25 10 2021) EncryptFunction DecryptFunction))
+(define emptyMB (socialnetwork "My Space" (date 25 10 2021) encryptFunction decryptFunction))
+(define emptyYT (socialnetwork "Youtube" (date 25 10 2021) encryptFunction decryptFunction))
+(define emptyTW (socialnetwork "Twitter" (date 25 10 2021) encryptFunction decryptFunction))
 
 ;register
 

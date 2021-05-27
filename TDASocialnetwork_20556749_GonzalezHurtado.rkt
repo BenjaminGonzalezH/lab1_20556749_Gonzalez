@@ -54,7 +54,7 @@
 ;DOMINIO: String.
 ;RECORRIDO: String.
 
-(define (EncryptFunction S)
+(define (encryptFunction S)
   ;Se comprueba que sea un string el elemento de la entrada.
   (if (string? S) 
       ;En el caso verdadero se modifica el string.
@@ -88,7 +88,7 @@
 ;DOMINIO: String.
 ;RECORRIDO: String.
 
-(define (DecryptFunction S)
+(define (decryptFunction S)
   ;Se comprueba que sea un string el elemento de entrada.
   (if (string? S) 
       ;Caso verdadero: se realiza el proceso de desencriptado.
@@ -347,9 +347,9 @@
 ; En este bloque se especifican las funciones las cuales se van a
 ; exportar a otros archivos.
 (provide Encryptation)
-(provide EncryptFunction)
+(provide encryptFunction)
 (provide Decryptation)
-(provide DecryptFunction)
+(provide decryptFunction)
 (provide IsSocialnetwork)
 (provide NameSocial)
 (provide DateSocial)

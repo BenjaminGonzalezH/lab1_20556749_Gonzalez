@@ -20,8 +20,8 @@
 
 ; BLOQUE DE IMPORTACIÓN.
 ; Se piden funciones del TDA fecha.
-(require "TDA_Fecha.rkt")
-(require "SubTDA_User.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
+(require "TDAUser_20556749_GonzalezHurtado.rkt")
 
 ;---------------------------------------------------------------------------------------------------------------
 

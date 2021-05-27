@@ -7,17 +7,17 @@
 ; BLOQUE DE IMPORTACIONES.
 ; En este bloque se importan todas las funciones para el correcto
 ; funcionamiento de la función a continuación.
-(require "SubTDA_User.rkt")
-(require "TDA_Fecha.rkt")
-(require "TDA_Socialnetwork.rkt")
-(require "Constructor_socialnetwork.rkt")
-(require "Register.rkt")
-(require "post.rkt")
-(require "follow.rkt")
-(require "share.rkt")
-(require "comment.rkt")
-(require "Like.rkt")
-(require "SocialString.rkt")
+(require "TDAUser_20556749_GonzalezHurtado.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
+(require "socialnetwork_20556749_GonzalezHurtado.rkt")
+(require "register_20556749_GonzalezHurtado.rkt")
+(require "post_20556749_GonzalezHurtado.rkt")
+(require "follow_20556749_GonzalezHurtado.rkt")
+(require "share_20556749_GonzalezHurtado.rkt")
+(require "comment_20556749_GonzalezHurtado.rkt")
+(require "like_20556749_GonzalezHurtado.rkt")
+(require "SocialString_20556749_GonzalezHurtado.rkt")
 
 ; Login
 ; Se define la función login como aquella que comprueba el

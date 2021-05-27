@@ -8,10 +8,10 @@
 ; BLOQUE DE IMPORTACIÓN.
 ; En este bloque se especifican los archivos donde
 ; se requieren funciones.
-(require "SubTDA_Post.rkt")
-(require "SubTDA_User.rkt")
-(require "TDA_Fecha.rkt")
-(require "TDA_Socialnetwork.rkt")
+(require "TDAPost_20556749_GonzalezHurtado.rkt")
+(require "TDAUser_20556749_GonzalezHurtado.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
 
 
 ; Post
@@ -24,10 +24,10 @@
 ;RECORRIDO3: content x list of strings.
 ;RECORRIDO FINAL: Socialnetwork.
 
-(define post (lambda (socialn) (lambda (user) (lambda (date) (lambda (type content . UserList)
+(define post (lambda (socialn) (lambda (user) (lambda (date) (lambda (content . UserList)
                                  ;Se comprueba si los datos ingresados son
                                  ;correctos.
-                                 (if (and (IsDate date) (string? content) (string? type))
+                                 (if (and (IsDate date) (string? content))
                                      ;Caso verdadero.
                                      ;Se genera nueva estructura socialnetwork
                                      ;con los el nuevo post y el usuario con la
@@ -36,7 +36,7 @@
                                            (EncrySocial socialn) (DecrySocial socialn)
                                            (ModifiUser (UserSocial socialn) (NewID user (length (PostSocial socialn))) '())
                                            (append (PostSocial socialn)
-                                                   (list (CreatePost (NameUser user) (length (PostSocial socialn)) type ((EncrySocial socialn) content) 0
+                                                   (list (CreatePost (NameUser user) (length (PostSocial socialn)) date ((EncrySocial socialn) content) 0
                                                                 (filter (AreFriends (WingUser user))  UserList) '() '()))))
                                      ;Caso falso.
                                      ;Se entrega socialnetwork sin modificaciones.

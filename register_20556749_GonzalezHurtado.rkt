@@ -5,10 +5,10 @@
 ; En este archivo se guarda la función register.
 
 ; BLOQUE DE IMPORTACIONES.
-(require "TDA_Fecha.rkt")
-(require "SubTDA_User.rkt")
-(require "TDA_Socialnetwork.rkt")
-(require "Constructor_socialnetwork.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
+(require "TDAUser_20556749_GonzalezHurtado.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
+(require "socialnetwork_20556749_GonzalezHurtado.rkt")
 
 ; Register.
 ; Función que registra un nuevo usuario en el TDA socialnetwork.

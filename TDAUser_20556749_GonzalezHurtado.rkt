@@ -15,7 +15,7 @@
 
 ; BLOQUE DE IMPORTACIÓN.
 ; Se piden funciones del TDA fecha.
-(require "TDA_Fecha.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
 
 ;---------------------------------------------------------------------
 
@@ -310,7 +310,7 @@
 ; Se define función la cual hace que un usuario se represente
 ; como un string.
 ;DOMINIO: user.
-;RECORRIDO: 
+;RECORRIDO: string.
 
 (define (user->string User)
   ;Se establece string del usuario.

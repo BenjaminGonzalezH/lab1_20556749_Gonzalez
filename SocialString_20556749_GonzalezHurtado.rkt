@@ -2,10 +2,10 @@
 #lang scheme
 
 ; BLOQUE DE IMPORTACIONES.
-(require "TDA_Fecha.rkt")
-(require "TDA_Socialnetwork.rkt")
-(require "SubTDA_Post.rkt")
-(require "SubTDA_User.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
+(require "TDAPost_20556749_GonzalezHurtado.rkt")
+(require "TDAUser_20556749_GonzalezHurtado.rkt")
 
 ; AllPost
 ; Se define función que genera un string de varios
@@ -25,7 +25,7 @@
       ;Caso falso.
       ;Se llama de nuevo a la función con la lista acortada y
       ;con el string agregando el string de publicación.
-      (AllPost socialn (cdr IDposts) (string-append string (post->string (list-ref (PostSocial socialn) (car IDposts)))))
+      (AllPost socialn (cdr IDposts) (string-append string (post->string socialn (list-ref (PostSocial socialn) (car IDposts)))))
       )
   )
 
@@ -59,6 +59,10 @@
 ;RECORRIDO2: String.
 
 (define socialnetwork->string (lambda (socialn) (lambda ([User "Usuario"])
+                                       ;Se comprueba entrada de socialnetwork.
+                                       (if (IsSocialnetwork socialn)
+                                           ;Caso verdadero.
+                                           ;Se realiza acción.
                                                   ;Se establecen condicionales para ver
                                                   ;que tipo de entrada se realizó.
                                                   ;Entrada sin uso de login.
@@ -78,6 +82,10 @@
                                                                      (AllPost socialn (IDsUser User) "")
                                                                      )
                                                       )
+                                            ;Caso Falso.
+                                            ;Se da string de error.
+                                            "ENTRADA INCORRECTA"
+                                            )
                                                   )
                                 )
   )

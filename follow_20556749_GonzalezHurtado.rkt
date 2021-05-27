@@ -6,10 +6,10 @@
 ; del socialnetwork.
 
 ; Bloque de importaciones.
-(require "SubTDA_User.rkt")
-(require "TDA_Socialnetwork.rkt")
-(require "Constructor_socialnetwork.rkt")
-(require "TDA_Fecha.rkt")
+(require "TDAUser_20556749_GonzalezHurtado.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
+(require "socialnetwork_20556749_GonzalezHurtado.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
 
 ; follow
 ; Función currificada que permite a un usuario seguir a una persona

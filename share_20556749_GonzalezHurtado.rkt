@@ -6,11 +6,11 @@
 ; En este archivo se guarda la función share.
 
 ; BLOQUE DE IMPORTACION.
-(require "TDA_Fecha.rkt")
-(require "SubTDA_Post.rkt")
-(require "SubTDA_User.rkt")
-(require "TDA_Socialnetwork.rkt")
-(require "Constructor_socialnetwork.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
+(require "TDAPost_20556749_GonzalezHurtado.rkt")
+(require "TDAUser_20556749_GonzalezHurtado.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
+(require "socialnetwork_20556749_GonzalezHurtado.rkt")
 
 ; Share.
 ; Función que comparte publicación a los usuarios designados

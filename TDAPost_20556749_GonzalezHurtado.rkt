@@ -6,8 +6,9 @@
 ; '(post), desde sus elementos hasta sus funciones propias.
 
 ; BLOQUE DE IMPORTACIÓN.  
-(require "TDA_Fecha.rkt")
-(require "SubTDA_User.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
+(require "TDAUser_20556749_GonzalezHurtado.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
 
 ; La subestructura post posee los siguientes elementos.
 
@@ -74,7 +75,7 @@
               )
       ;Caso falso.
       ;Se da post sin modificar.
-      post
+      (append post)
       )
   )
 ;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -157,14 +158,15 @@
 ; post->string.
 ; Se define función que transforma un TDA post.
 ; A un string.
-;DOMINIO: Post.
+;DOMINIO: socialnetwork x Post.
 ;RECORRIDO: String.
 
-(define (post->string post)
+(define (post->string socialn post)
   ;Se produce transdormación del dato post
   (string-append (string-append "Autor: " (UserPost post) "\n")
                  (string-append "ID: " (number->string (IDPost post)) "\n")
                  (string-append "Fecha: " (NumberString (DatePost post) "") "\n")
+                 (string-append "Contenido: " ((DecrySocial socialn) (ContentPost post)) "\n")
                  (string-append "Likes: " (number->string (LikesPost post)) "\n")
                  (string-append "Mentions: " (WerString (MentionPost post) "") "\n")
                  (string-append "Share: " (WerString (SharePost post) "") "\n\n")

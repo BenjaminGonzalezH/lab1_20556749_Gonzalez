@@ -6,8 +6,8 @@
 ; del TDA socialnetwork.
 
 ; Se pide información de funciones del archivo "TDA_socialnetwork.rkt"
-(require "TDA_socialnetwork.rkt")
-(require "TDA_Fecha.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
 
 ; socialnetwork
 ; Función que crea la representación del TDA socialnetwork

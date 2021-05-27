@@ -6,11 +6,11 @@
 #lang scheme
 
 ; BLOQUE DE IMPORTACIONES.
-(require "SubTDA_Post.rkt")
-(require "Register.rkt")
-(require "TDA_Socialnetwork.rkt")
-(require "TDA_Fecha.rkt")
-(require "Constructor_socialnetwork.rkt")
+(require "TDAPost_20556749_GonzalezHurtado.rkt")
+(require "register_20556749_GonzalezHurtado.rkt")
+(require "TDASocialnetwork_20556749_GonzalezHurtado.rkt")
+(require "TDAFecha_20556749_GonzalezHurtado.rkt")
+(require "socialnetwork_20556749_GonzalezHurtado.rkt")
 
 
 ; Like
